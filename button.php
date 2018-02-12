@@ -39,13 +39,24 @@ class Button
 	/* Functions */
 	
 	public function getOutput(){
-		return('
-		<a href="' . $this->_link . '" class="' . $this->_classes . '">
+		$output = '<a ';
+			
+		if (!empty($this->_link)){
+			$output .= 'href="' . $this->_link . '" ';
+		}
+		
+		if (!empty($this->_id)){
+			$output .= 'id="' . $this->_id . '" ';
+		}
+		
+		$output .= 'class="' . $this->_classes . '">
 			<span>
 				' . $this->_text . '
 			</span>
 		</a>
-		');
+		';
+		
+		return($output);
 	}
 	
 	/* Unite */
