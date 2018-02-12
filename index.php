@@ -27,7 +27,7 @@
 					<div class="inner-button">
 						<?php
 						$buttonnav = new Button('IMPORTER', true);
-						$buttonnav->setLink('Lauralabest');
+						$buttonnav->setLink('preview.php');
 						echo($buttonnav->getOutput());
 						?>
 					</div>
@@ -43,7 +43,7 @@
 			<div class="inner-button">
 				<?php
 				$buttonnav = new Button('IMPORTER', true);
-				$buttonnav->setLink('Lauralabest');
+				$buttonnav->setLink('preview.php');
 				echo($buttonnav->getOutput());
 			?>
 			</div>
