@@ -1,8 +1,12 @@
 <!doctype html>
 
-<?php 
-	include('button.php');		
+<?php
+	include('button.php');
+
+
+
 ?>
+
 
 <html>
 <head>
@@ -20,7 +24,9 @@
 		
 			<div class="inner">
 				<div class="absentia nav-item">
-					<img src="img/absentia white.svg" alt="Absentia"/>
+					<a href="index.php">
+						<img src="img/absentia white.svg" alt="Absentia"/>
+					</a>
 				</div>
 				<div class="espl nav-item">
 					<a href="https://www.espl.fr">

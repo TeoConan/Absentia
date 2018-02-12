@@ -112,6 +112,10 @@ body > .inner > .background {
 	margin: 0 auto;
 }
 
+.block-center .inner-button .button {
+	cursor: pointer;
+}
+
 /* FOOTER */
 
 .block-footer {
@@ -176,6 +180,13 @@ body > .inner > .background {
 }
 
 
+.error {
+	color: white;
+    font-size: 1rem;
+    font-family: sans-serif;
+	text-align: center;
+	margin: 5px 0;
+}
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -232,6 +243,10 @@ body.page-preview .block-center .inner-button {
     top: 0;
     right: 0;
     transform: none;
+}
+
+.block-center > .error:first-of-type {
+	padding-top: 35px;
 }
 
 		/* CONTENU */
