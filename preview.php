@@ -7,11 +7,13 @@
 <html>
 <head>
 	<link rel="stylesheet" href="css/style.css" />
+	<script src="jquery.min.js"></script>
 	<meta charset="utf-8">
 	<title>Absentia</title>
 </head>
 
 <body class="page-preview">
+
 	<div class="inner">
 		<div class="background"></div>
 		<header class="block-header">
@@ -21,7 +23,9 @@
 					<img src="img/absentia white.svg" alt="Absentia"/>
 				</div>
 				<div class="espl nav-item">
-					<img src="img/logo_1.png">
+					<a href="https://www.espl.fr">
+						<img src="img/logo_1.png">
+					</a>
 				</div>
 				<div class="nav-item">
 					<div class="inner-button">
@@ -131,6 +135,7 @@
 		<div class="inner">
 			<a href="#">Mentions légales</a>
 			<a href="https://www.espl.fr">ESPL.fr</a>
+			<a href="https://planning-espl.eduservices.org/hp/">Hyperplanning</a>
 			<a href="#">Signaler un problème</a>
 		</div>
 	</footer>

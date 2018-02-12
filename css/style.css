@@ -95,6 +95,7 @@ body > .inner > .background {
 	font-size: 80px;
 	margin: 0;
 	font-weight: 100;
+	text-align: center;
 }
 
 .block-center h2 {
@@ -248,9 +249,9 @@ body.page-preview .block-center .inner-button {
 }
 .page-preview .block-list ul {
 	font-family : 'Carlito', sans-serif;
-	height: 800px;
 	margin: 0;
 	padding: 0;
+	padding-bottom: 25px;
 	margin-top: 20px;
 }
 
@@ -337,6 +338,7 @@ li.item.promotion {
 	height: 555px;
 	padding: 0 50px;
 	margin: 60px;
+	z-index: 999;
 	position: absolute;
 	top: 50%;
 	transform: translate(-60%, -50%);
@@ -389,6 +391,10 @@ li.item.promotion {
 	text-align: center;
 	width: 100%;
 	margin: auto;
+}
+
+.popup .title img {
+	cursor: pointer;
 }
 
 .popup .form {
@@ -462,16 +468,16 @@ li.item.promotion {
 }
 
 .popup {
-    position: absolute;
-    -webkit-animation-name: example;  /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 1.5s;  /* Safari 4.0 - 8.0 */    
-    -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+	position: absolute;
+    -webkit-animation-name: example;  
+    -webkit-animation-duration: 1.5s;   
+    -webkit-animation-fill-mode: forwards; 
     animation-name: example;
     animation-duration: 1.5s;    
     animation-fill-mode: forwards;
 }
 
-/* Safari 4.0 - 8.0 */
+
 @-webkit-keyframes example {
     from {top: -100%;}
     to {top: 50%;}
