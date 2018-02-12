@@ -51,14 +51,19 @@
 			<form method="post" action="preview.php">
 				<div class="inner-button">
 				
+				<?php
+							$buttonnav = new Button('IMPORTER', true);
+							$buttonnav->setLink('preview.php');
+							echo($buttonnav->getOutput());
+						?>
 				
 						<!------------ RECUP FICHIER ENVOYÉ ---------------->
 				<!----<input type="file" id="hiddenfile" style="display:none" name="file" onChange="getvalue();"/>---->
 	
 					 <!-- On limite le fichier à 100Ko -->
-					 <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+					 <!--<input type="hidden" name="MAX_FILE_SIZE" value="100000">
 					 Fichier : <input type="file" name="file">
-					 <input type="submit" name="envoyer" value="Envoyer le fichier">
+					 <input type="submit" name="envoyer" value="Envoyer le fichier">-->
 				</div>
 			</form>
 			
