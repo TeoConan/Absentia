@@ -22,6 +22,9 @@
 					</div>
 					<textarea name="" cols="40" rows="" maxlength="400" id="input_message"></textarea>
 				</div>
+				
+				<p id="text" style="display: none;">Des champs n'ont pas étés saisis</p>
+				
 				<div class="button">
 					<?php
 						$buttonnav = new Button('ENVOYER', true);
