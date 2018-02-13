@@ -43,21 +43,32 @@
 
 	<main class="block-center">
 	
-		<h1 class="title">Absentia - Aide</h1>
+	
+		<h1 class="title">Absentia - Débuter</h1>
 	
 		<div class="inner">
 			
 			<section>
-				<h2>Importer un fichier au format CSV ?</h2>
-				<p>Absentia à besoin de fichier Excel au format CSV pour pouvoir fonctionner, pour exporter un fichier au format CSV <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">c'est par ici</a></p>
+				<h2>À quoi sert Absentia ?</h2>
+				<p>Il s'agit d'une plateforme créée spécialement pour le campus de l'ESPL. Elle permet à l'administration de gérer les absences des étudiants de manière plus simple et efficace. A partir d'un fichier Excel, il sera généré des "Absentia List". Sur ces dernières figureront le résumé des absences de chaque élève en fonction de la promotion choisie.</p>
 			</section>
 			
 			<div class="separator"></div>
 			
+				<h2>Comment l'utiliser ?</h2>
+				<p>Sur la page d'accueil, il vous suffit de cliquer sur le bouton importer. Sélectionnez et ouvrez le fichier Excel (au <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">format CSV</a>). Choisissez les promotions pour lesquelles vous souhaitez générer des Absentia List et cliquez sur télécharger, elles seront alors automatiquement générées. </p>
+			
+		</div>
+		
+		<h1 class="title2">Absentia - Aide</h1>
+	
+		<div class="inner2">
+			
 			<section>
-				<h2>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a ligula id massa accumsan pellentesque. Nulla facilisi. Donec scelerisque posuere interdum. Vestibulum tristique sed nisl non laoreet. In odio elit, imperdiet vel nibh sed, auctor bibendum ex. Aenean maximus hendrerit euismod. In purus nibh, varius in faucibus a, iaculis a eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque at tincidunt magna. Suspendisse ut ex luctus, ullamcorper augue nec, semper metus. Morbi sed mauris vitae nunc congue egestas. Curabitur quis hendrerit velit.</p>
+				<h2>Comment importer un fichier au format CSV ?</h2>
+				<p>Absentia à besoin de fichiers Excel au format CSV pour pouvoir fonctionner, pour savoir comment exporter un fichier au format CSV <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">c'est par ici</a>.</p>
 			</section>
+		
 		</div>
 	</main>
 

@@ -62,8 +62,8 @@ body > .inner > .background {
 
 .block-header .nav-item {
 	margin: auto;
-	width: 33.3%;
 	display: flex;
+	width: 33.3%;
 }
 
 .block-header .nav-item > * {
@@ -123,7 +123,7 @@ body > .inner > .background {
 .block-center h2 {
 	color: white;
 	font-family : 'Carlito', sans-serif;
-	font-size: 35px;
+	font-size: 30px;
 	text-align: center;
 	margin: 0;
 	margin-bottom: 3rem;
@@ -187,6 +187,7 @@ body > .inner > .background {
 	color: white;
 	margin-top: 1px;
 	font-size: 1rem;
+	white-space: nowrap;
 	text-transform: uppercase;
 	font-family: 'Carlito', sans-serif;
 }
@@ -392,6 +393,9 @@ li.item.promotion {
 	
 }
 
+.page-help .block-center > *{
+	z-index: 3;
+}
 .page-help .block-center {
 	display: flex;
 	margin: 0 auto;
@@ -423,7 +427,7 @@ li.item.promotion {
 	background-image: url("../img/paper.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	z-index: -1;
+	z-index: 2;
 }
 
 .page-help .block-center > .inner {
@@ -433,13 +437,25 @@ li.item.promotion {
 	box-shadow: 0px 14px 20px rgba(0,0, 0 ,0.2);
 }
 
+.page-help .block-center > .inner2 {
+	background: #ffffff;
+	padding: 10px 40px;
+	border-radius: 10px;
+	box-shadow: 0px 14px 20px rgba(0,0, 0 ,0.2);
+	margin-bottom: 60px;
+}
+
+.page-help .block-center > .title2 {
+	margin-top: 30px;
+}
+
 .page-help .block-center section{
 	margin: 20px 0;
 }
 
 .page-help .block-center h1{
-	margin-bottom: 40px;
-	font-size: 3.5rem;
+	margin-bottom: 30px;
+	font-size: 3.3rem;
 }
 
 .page-help .block-center h2{
@@ -630,8 +646,31 @@ li.item.promotion {
 
 /* RESPONSIVE */
 
-@media (max-width: 1300px){
+@media (max-width: 1200px){
 	.block-header .inner {
 		flex-direction: column;
+		border-bottom: none;
+	}
+	
+	.block-header {
+		padding: 0;
+	}
+	
+	.block-header .nav-item .inner-button {
+		margin-top: 50px;
+	}
+	
+	.block-header .nav-item {
+		width: auto;
+	}
+	
+	.page-help .block-center {
+		display: flex;
+		background-image: url(../res/material_white.jpg);
+		background-repeat: repeat;
+		position: inherit;
+		top: 0;
+		right: 0;
+		transform: none;
 	}
 }
