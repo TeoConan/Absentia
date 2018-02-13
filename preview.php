@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/style.css" />
 	<script src="jquery.min.js"></script>
 	<meta charset="utf-8">
-	<title>Absentia</title>
+	<title>Absentia - Promotions</title>
 </head>
 
 <body class="page-preview">

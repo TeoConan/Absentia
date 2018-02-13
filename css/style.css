@@ -384,6 +384,88 @@ li.item.promotion {
 
 
 
+/* HELP */
+
+
+.page-help {
+	
+}
+
+.page-help .block-center {
+	display: flex;
+	margin: 0 auto;
+	padding-top: 50px;
+	max-width: 1000px;
+    position: inherit;
+    top: 0;
+    right: 0;
+    transform: none;
+}
+
+/* Header */
+
+.page-help .block-header {
+	position: inherit;
+    top: 0;
+    left: 0;
+    width: auto;
+    z-index: 10;
+}
+
+
+.page-help > .background{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	background-image: url("../img/paper.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: -1;
+}
+
+.page-help .block-center > .inner {
+	background: #ffffff;
+	padding: 10px 40px;
+	border-radius: 10px;
+	box-shadow: 0px 14px 20px rgba(0,0, 0 ,0.2);
+}
+
+.page-help .block-center section{
+	margin: 20px 0;
+}
+
+.page-help .block-center h1{
+	margin-bottom: 40px;
+	font-size: 3.5rem;
+}
+
+.page-help .block-center h2{
+	text-align: left;
+	color: black;
+	margin-bottom: 20px;
+}
+
+.page-help .block-center a{
+	color: black;
+}
+
+.page-help .block-center p{
+	font-family: 'Calibri', sans-serif;
+	line-height: 1.25rem;
+}
+
+.page-help .block-center .separator {
+	margin: 40px 0;
+	height: 0px;
+	width: 100%;
+	
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
 /* POPUP */
 
 .page-popup {
