@@ -8,6 +8,7 @@
 <head>
 	<link rel="stylesheet" href="css/style.css" />
 	<script src="jquery.min.js"></script>
+	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
 	<meta charset="utf-8">
 	<title>Absentia</title>
 </head>
@@ -34,8 +35,9 @@
 				<div class="nav-item">
 					<div class="inner-button">
 						<?php
-						$buttonnav = new Button('IMPORTER', true);
-						$buttonnav->setLink('preview.php');
+						$buttonnav = new Button('BESOIN D\'AIDE ?', true);
+						$buttonnav->setLink('help.php');
+						$buttonnav->setBackColor('#f5f5f5');
 						echo($buttonnav->getOutput());
 						?>
 	
@@ -60,7 +62,7 @@
 			
 			<form action="upload.php" method="post" enctype="multipart/form-data">
 			
-				<input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
+				<input type="file" accept=".csv" name="fileToUpload" id="fileToUpload" style="display: none;">
 				<input type="submit" value="Upload Image" name="submit" id="submit"  style="display: none;">
 			</form>
 
@@ -97,7 +99,7 @@
 						break;
 				}
 				
-				$output .= '	Code d\'erreur ' . $_GET['e'];
+				$output .= '<br>Code d\'erreur ' . $_GET['e'];
 				
 				echo($output);
 			}

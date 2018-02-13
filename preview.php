@@ -4,7 +4,11 @@
 	include('button.php');
 
 
+	$error = false;
+	$exist = false;
 
+	if (empty($_GET['file'])){$error = true;}
+	if (file_exists('product/exe/temp/' . $_GET['file'])){$exist = true;}
 ?>
 
 
@@ -37,7 +41,7 @@
 					<div class="inner-button">
 						<?php
 						$buttonnav = new Button('IMPORTER', true);
-						$buttonnav->setLink('Lauralabest');
+						$buttonnav->setLink('');
 						echo($buttonnav->getOutput());
 						?>
 					</div>
@@ -51,9 +55,12 @@
 			<div class="inner">
 			<div class="inner-button">
 				<?php
-					$buttonnav = new Button('TÉlÉCHARGER', true);
-					$buttonnav->setLink('Lauralabest');
-					echo($buttonnav->getOutput());
+					if (!$error && $exist){
+						$buttonnav = new Button('TÉlÉCHARGER', true);
+						$buttonnav->setLink('');
+						echo($buttonnav->getOutput());
+					}
+						
 				?>
 			</div>
 				<div class="block-list">
@@ -62,7 +69,34 @@
 							<img src="img/ic_search_black_24px.svg">
 							<input type="text" name="name" id="name" placeholder="Rechercher">
 						</div>
-						<ul class="content">
+						<ul class="content-promotion">
+						
+							<?php
+							if (!$error){
+								if ($exist){
+									include('product/exe/scan.php');
+								} else {
+									echo('<p class="error">Une erreur est survenue</p>');
+									$bterror = new Button('Accueil', true);
+									$bterror->setLink('index.php');
+									echo('<div class="inner-button error">');
+									echo($bterror->getOutput());
+									echo('</div>');
+								}
+							} else {
+								echo('<p class="error">Une erreur est survenue</p>');
+									$bterror = new Button('Accueil', true);
+									$bterror->setLink('index.php');
+									echo('<div class="inner-button error">');
+									echo($bterror->getOutput());
+									echo('</div>');
+							}
+							
+							
+							?>
+						
+							
+							<!--
 							<li class="item promotion">
 								<div class="item promotion">
 									<div class="inner">
@@ -123,6 +157,8 @@
 									</div>
 								</div>
 							</li>
+							
+							-->
 						</ul>
 					</div>
 				</div>
@@ -145,5 +181,7 @@
 			<a href="#">Signaler un problème</a>
 		</div>
 	</footer>
+	
+	<script type="text/javascript" src="product/script.js"></script>
 </body>
 </html>

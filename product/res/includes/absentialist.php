@@ -8,12 +8,16 @@ class AbsentiaList
 	public $_responsable;
 	public $_nbr_students;
 	public $_students;
+	public $_date;
 	
 	public function __construct($promo, $students) {
 		$this->_id = uniqid('absentia_list_');
 		$this->_class = $promo;
 		$this->_students = $students;
 		$this->_nbr_students = sizeof($students);
+		$date = getdate();
+		if (sizeof($date['mon']) == 1){$date['mon'] = '0' . $date['mon'];}
+		$this->_date = $date['mday'] . '/' . $date['mon'] . '/' . $date['year'];
 		
 		//echo('		Contruct v delete double		');
 	}
@@ -39,12 +43,19 @@ class AbsentiaList
 		$allstudents = $this->_students;
 		$output = false;
 		
+		print_r($this->_students);
+		//echo('	Recherche de ' . $name . ' dans un tableau de ' . sizeof($this->_students) . ' cases	/	');
 		for ($i = 0; $i < sizeof($this->_students); $i++){
-			if($this->_students[$i] == $name){
+			//echo('	Comparaison recherche : ' . $this->_students[$i]->_name . ' ? ' . $name . ' = ' . ($this->_students[$i]->_name == $name) . ' /		');
+			if($this->_students[$i]->_name == $name){
 				$output = $i;
 			}
 		}
 		
+		if(!is_numeric($output)){
+			//echo('		ERREUR dans la recherche d\'un student appelé ' . $name . ' INDEX : ' . $output . ' /		');
+		}
+		//echo('		Index de recherche de ' . $name . ' : ' . $output . '		/		');
 		return($output);
 	}
 	
@@ -58,7 +69,7 @@ class AbsentiaList
 			
 			if($student->_name == $current_item->_name){
 				$exist = true;
-				echo('---------Comparator : ' . $student->_name . ' and ' . $current_item->_name . ' = ' . ($student->_name == $current_item->_name) . '		');
+				//echo('---------Comparator : ' . $student->_name . ' and ' . $current_item->_name . ' = ' . ($student->_name == $current_item->_name) . '		');
 				/*if ($remplace){
 					echo('		Remplace ' . $this->_students[$i] . ' by ' . $student->_name);
 					$this->_students[$i] = $student;
@@ -77,7 +88,7 @@ class AbsentiaList
 			$current_student = $this->getStudentByName($student->_name);
 			
 			$index_existing_student = $this->getStudentIndex($student->_name);
-			echo(' addStudent and Merge / index = ' . $index_existing_student . '		');
+			//echo(' addStudent and Merge / index = ' . $index_existing_student . '		');
 			$this->_students[$index_existing_student] = $this->mergeStudents($this->_students[$index_existing_student], $student);
 			
 			
@@ -145,12 +156,12 @@ class AbsentiaList
 		$newst = new Student($st1->_name, $st1->_class, $date, $hours, $lessons, $st1->_attachement, $st1->_motive, $letter, $sms, $st1->_justificatory);
 		
 		
-		echo('		ST1  : ');
+		/*echo('		ST1  : ');
 		print_r($st1);
 		echo('		ST2  : ');
 		print_r($st2);
 		echo('		MERGE result : ');
-		print_r($newst);
+		print_r($newst);*/
 		
 		return($newst);
 	}
@@ -192,7 +203,7 @@ class AbsentiaList
 		foreach($array as $elem){
 			if($key->_name == $elem->_name){
 				$exist = true;
-				echo('---------Comparator : ' . $key->_name . ' and ' . $elem->_name . ' = ' . ($key->_name == $elem->_name) . '		');
+				//echo('---------Comparator : ' . $key->_name . ' and ' . $elem->_name . ' = ' . ($key->_name == $elem->_name) . '		');
 			}
 		}
 

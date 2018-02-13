@@ -70,6 +70,28 @@ body > .inner > .background {
 	margin: auto;
 }
 
+/* Button help */
+/*.block-header .nav-item .button {
+	background-color: white;
+    border: 1px solid black;
+}
+
+.block-header .nav-item .button > span{
+    color: black;
+}
+
+.block-header .nav-item .button:hover {
+	background-color: #d0171e;
+    border-radius: 120px;
+    border: 1px solid rgba(0,0,0,0.00);
+}
+
+.block-header .nav-item .button:hover > span {
+	color: white;
+}*/
+
+
+
 .block-header .absentia img {
     height: 50px;
 }
@@ -84,7 +106,7 @@ body > .inner > .background {
 	position: absolute;
 	top: 50%;
 	right: 50%;
-	transform: translate(50%, -50%);
+	transform: translate(50%, -35%);
 	display: flex;
 	flex-direction: column;
 }
@@ -198,6 +220,7 @@ body > .inner > .background {
 
 body.page-preview > .inner > .background {
 	background-image: url("../img/back.jpg");
+	z-index: 2;
 }
 
 body.page-preview {
@@ -210,6 +233,9 @@ body.page-preview .background {
 
 body.page-preview > .inner {
 	height: auto;
+	min-height: 90vh;
+	
+	
 }
 
 	/* HEADER */
@@ -219,6 +245,7 @@ body.page-preview > .inner {
 	top: 0;
 	left: 0;
 	width: auto;
+	z-index: 10;
 }
 
 	/* MAIN */
@@ -232,13 +259,13 @@ body.page-preview .block-center .inner-button {
 	margin: auto;
 	display: flex;
 	flex-direction: column;
+	z-index: 10;
 }
 
 .page-preview .block-center {
 	display: flex;
-}
-
-.page-preview .block-center {
+	background-image: url(../res/material_white.jpg);
+	background-repeat: repeat;
 	position: inherit;
     top: 0;
     right: 0;
@@ -258,10 +285,27 @@ body.page-preview .block-center .inner-button {
 	box-shadow: 0px 14px 20px rgba(0,0, 0 ,0.2);
 }
 
-.page-preview .block-list .content {
+/* Error */
+.page-preview .block-list .error {
+	text-align: center;
+	color: black;
+}
+
+.page-preview .block-list .inner-button.error {
+	margin-top: 30px;
+	margin-bottom: 0;
+}
+
+.page-preview .block-list .content-promotion {
 	display: flex;
 	flex-direction: column;
+	list-style: none;
 }
+
+.page-preview .block-list .content-promotion > li {
+	margin: 10px 0;
+}
+
 .page-preview .block-list ul {
 	font-family : 'Carlito', sans-serif;
 	margin: 0;
@@ -324,6 +368,7 @@ li.item.promotion {
 	font-size: 20px;
 	margin: auto 5px;
 	width: 100%;
+	padding: 6px 0;
 }
 
 .page-preview .block-list .recherche img {
