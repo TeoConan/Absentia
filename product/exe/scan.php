@@ -6,7 +6,7 @@ include('function.php');
 //Get promos
 if ($_GET['query'] == 'getlistpromo'){
 	
-	$namefile = 'class.csv';
+	$namefile = $_GET['file'];
 	$promos = getPromos($namefile);
 	
 	

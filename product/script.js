@@ -1,5 +1,27 @@
 // JavaScript Document
 
+//Exe
+
+//Tous les items téléchargé
+var itempromo = document.getElementsByClassName('item-promotion');
+//Ul accueillant les items
+var listpromo = document.getElementById('content-promotion');
+//Bouton download
+var btdl = document.getElementById('btget');
+
+getListPromo();
+
+
+
+
+
+
+
+
+
+
+
+
 //Console
 var textzone = document.getElementById('text');
 //Bouton get
@@ -99,6 +121,7 @@ function makeList(){
 		data: sendtab
 		}, function(response) {
 			console.log(response);
+			
 		});
 	}
 	sendData();

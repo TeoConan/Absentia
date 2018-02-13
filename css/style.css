@@ -70,6 +70,28 @@ body > .inner > .background {
 	margin: auto;
 }
 
+/* Button help */
+/*.block-header .nav-item .button {
+	background-color: white;
+    border: 1px solid black;
+}
+
+.block-header .nav-item .button > span{
+    color: black;
+}
+
+.block-header .nav-item .button:hover {
+	background-color: #d0171e;
+    border-radius: 120px;
+    border: 1px solid rgba(0,0,0,0.00);
+}
+
+.block-header .nav-item .button:hover > span {
+	color: white;
+}*/
+
+
+
 .block-header .absentia img {
     height: 50px;
 }
@@ -84,7 +106,7 @@ body > .inner > .background {
 	position: absolute;
 	top: 50%;
 	right: 50%;
-	transform: translate(50%, -50%);
+	transform: translate(50%, -35%);
 	display: flex;
 	flex-direction: column;
 }
@@ -110,6 +132,10 @@ body > .inner > .background {
 
 .block-center .inner-button {
 	margin: 0 auto;
+}
+
+.block-center .inner-button .button {
+	cursor: pointer;
 }
 
 /* FOOTER */
@@ -177,6 +203,13 @@ body > .inner > .background {
 }
 
 
+.error {
+	color: white;
+    font-size: 1rem;
+    font-family: sans-serif;
+	text-align: center;
+	margin: 5px 0;
+}
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -188,6 +221,7 @@ body > .inner > .background {
 
 body.page-preview > .inner > .background {
 	background-image: url("../img/back.jpg");
+	z-index: 2;
 }
 
 body.page-preview {
@@ -200,6 +234,9 @@ body.page-preview .background {
 
 body.page-preview > .inner {
 	height: auto;
+	min-height: 90vh;
+	
+	
 }
 
 	/* HEADER */
@@ -209,6 +246,7 @@ body.page-preview > .inner {
 	top: 0;
 	left: 0;
 	width: auto;
+	z-index: 10;
 }
 
 	/* MAIN */
@@ -222,17 +260,21 @@ body.page-preview .block-center .inner-button {
 	margin: auto;
 	display: flex;
 	flex-direction: column;
+	z-index: 10;
 }
 
 .page-preview .block-center {
 	display: flex;
-}
-
-.page-preview .block-center {
+	background-image: url(../res/material_white.jpg);
+	background-repeat: repeat;
 	position: inherit;
     top: 0;
     right: 0;
     transform: none;
+}
+
+.block-center > .error:first-of-type {
+	padding-top: 35px;
 }
 
 		/* CONTENU */
@@ -244,10 +286,27 @@ body.page-preview .block-center .inner-button {
 	box-shadow: 0px 14px 20px rgba(0,0, 0 ,0.2);
 }
 
-.page-preview .block-list .content {
+/* Error */
+.page-preview .block-list .error {
+	text-align: center;
+	color: black;
+}
+
+.page-preview .block-list .inner-button.error {
+	margin-top: 30px;
+	margin-bottom: 0;
+}
+
+.page-preview .block-list .content-promotion {
 	display: flex;
 	flex-direction: column;
+	list-style: none;
 }
+
+.page-preview .block-list .content-promotion > li {
+	margin: 10px 0;
+}
+
 .page-preview .block-list ul {
 	font-family : 'Carlito', sans-serif;
 	margin: 0;
@@ -310,6 +369,7 @@ li.item.promotion {
 	font-size: 20px;
 	margin: auto 5px;
 	width: 100%;
+	padding: 6px 0;
 }
 
 .page-preview .block-list .recherche img {
@@ -323,6 +383,88 @@ li.item.promotion {
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+
+/* HELP */
+
+
+.page-help {
+	
+}
+
+.page-help .block-center {
+	display: flex;
+	margin: 0 auto;
+	padding-top: 50px;
+	max-width: 1000px;
+    position: inherit;
+    top: 0;
+    right: 0;
+    transform: none;
+}
+
+/* Header */
+
+.page-help .block-header {
+	position: inherit;
+    top: 0;
+    left: 0;
+    width: auto;
+    z-index: 10;
+}
+
+
+.page-help > .background{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	background-image: url("../img/paper.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: -1;
+}
+
+.page-help .block-center > .inner {
+	background: #ffffff;
+	padding: 10px 40px;
+	border-radius: 10px;
+	box-shadow: 0px 14px 20px rgba(0,0, 0 ,0.2);
+}
+
+.page-help .block-center section{
+	margin: 20px 0;
+}
+
+.page-help .block-center h1{
+	margin-bottom: 40px;
+	font-size: 3.5rem;
+}
+
+.page-help .block-center h2{
+	text-align: left;
+	color: black;
+	margin-bottom: 20px;
+}
+
+.page-help .block-center a{
+	color: black;
+}
+
+.page-help .block-center p{
+	font-family: 'Calibri', sans-serif;
+	line-height: 1.25rem;
+}
+
+.page-help .block-center .separator {
+	margin: 40px 0;
+	height: 0px;
+	width: 100%;
+	
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
 /* POPUP */
