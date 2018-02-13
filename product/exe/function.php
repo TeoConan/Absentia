@@ -9,8 +9,7 @@ function buildPromoItem($promo, $responsable){
 		<div class="item promotion">
 				<div class="inner">
 					<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon"/>
-					<p><span>' . $promo . '</span> - 
-					Johan Marchesseau
+					<p><span>' . $promo . '</span>
 					</p>
 				</div>
 			</div>
