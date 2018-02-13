@@ -220,11 +220,13 @@ body > .inner > .background {
 
 body.page-preview > .inner > .background {
 	background-image: url("../img/back.jpg");
-	z-index: 2;
+	z-index: -1;
 }
 
 body.page-preview {
 	background-color: #f5f5f5;
+	background-image: url(../res/material_white.jpg);
+    background-repeat: repeat;
 }
 
 body.page-preview .background {
@@ -265,8 +267,6 @@ body.page-preview .block-center .inner-button {
 
 .page-preview .block-center {
 	display: flex;
-	background-image: url(../res/material_white.jpg);
-	background-repeat: repeat;
 	position: inherit;
     top: 0;
     right: 0;
@@ -359,6 +359,7 @@ body.page-preview .block-center .inner-button {
 	width: 100%;
 	white-space: nowrap;
     overflow: hidden;
+	padding: 0 5px;
     text-overflow: ellipsis;
 }
 

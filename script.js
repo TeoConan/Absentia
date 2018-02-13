@@ -16,16 +16,18 @@ initPromp();
 //Test
 //Search
 
-console.log(getListPromo());
 
-
-toggleLoad($('.page-preview .block-center .button'), 'TÉLÉCHARGER');
+/*toggleLoad($('.page-preview .block-center .button'), 'TÉLÉCHARGER');
 setTimeout(function(){
 	toggleLoad($('.page-preview .block-center .button'), 'TÉLÉCHARGER');
-}, 2000);
+}, 2000);*/
 
 
+/*selectAll();
 
+setTimeout(function(){
+	selectAll();
+}, 2000);*/
 
 
 
@@ -43,7 +45,11 @@ function initPromp(event){
 	//Boutons telecharger
 	$(btdl).click(function(){
 		console.log('Dl');
+		toggleLoad($(btdl), 'TÉLÉCHARGER');
 		makeList();
+		setTimeout(function(){
+			toggleLoad($(btdl), 'TÉLÉCHARGER');
+		}, 1000);
 	});
 	
 	//Barre search
@@ -103,7 +109,39 @@ function getListPromo(){
 
 
 
+function selectAll(){
+	var elements = document.getElementsByClassName('item-promotion');
+	
+	for(var i = 0; i < elements.length; i++){
+		select(i+1);
+	}
+}
 
+function select(child){
+	var element = $('.item-promotion:nth-child(' + child + ')');
+	
+	
+	//Icon
+	if ($(element).find('img').attr("src").search('res/icons/ic_check_white_24px.svg') != -1){
+		$(element).fadeOut(100);
+		setTimeout(function(){
+			$(element).find('img').attr("src", 'res/icons/ic_add_circle_outline_white.svg');
+			$(element).fadeIn(100);
+		}, 100);
+
+	} else {
+		$(element).fadeOut(100);
+		setTimeout(function(){
+			$(element).find('img').attr("src", 'res/icons/ic_check_white_24px.svg');
+			$(element).fadeIn(100);
+		}, 100);
+
+	}
+	
+	//Back
+	
+	$(element).find('> .item.promotion').toggleClass('checked');
+}
 
 
 
