@@ -7,6 +7,7 @@ include('function.php');
 if ($_GET['query'] == 'getlistpromo'){
 	
 	$namefile = $_GET['file'];
+
 	$promos = getPromos($namefile);
 	
 	

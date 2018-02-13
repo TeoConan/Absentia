@@ -516,6 +516,7 @@ li.item.promotion {
 .popup .inner .title img {
 	height: 20px;
 	width: 20px;
+	cursor: pointer;
 }
 
 
@@ -629,6 +630,7 @@ li.item.promotion {
     animation-name: example;
     animation-duration: 1.5s;    
     animation-fill-mode: forwards;
+	z-index: 99;
 }
 
 

@@ -160,6 +160,7 @@ class AbsentiaList
 		print_r($st1);
 		echo('		ST2  : ');
 		print_r($st2);
+
 		echo('		MERGE result : ');
 		print_r($newst);*/
 		

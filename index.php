@@ -10,7 +10,6 @@
 	<script src="jquery.min.js"></script>
 	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Absentia</title>
 </head>
 
@@ -148,21 +147,12 @@
 			document.getElementById(addr).style.display = "block" ;
 		}
 		
-			var input_name = document.getElementById("input_name"); 
-			var input_mail = document.getElementById("input_mail"); 
-			var input_message = document.getElementById("input_message");
-			var text = document.getElementById("text"); 
-		
 		function toggle () {
 			if (document.getElementById('popup').style.display == "none") {
 				show('popup');
 			}else {
 				hide('popup');
 			}
-			input_name.value="";
-			input_mail.value="";
-			input_message.value="";
-			text.style.display = "none";
 		}
 		window.onload = function() { hide ('popup'); };
 		
@@ -178,9 +168,8 @@
 		
 		lienpopup.addEventListener("click", toggle, false);
 		close.addEventListener("click", toggle, false);
-		
-		
 		button_send.addEventListener("click", sendform, false);
+		
 				
 		/*--------------------------------------------------*/
 		
@@ -202,12 +191,6 @@
 					/*ENVOI DU FORMULAIRE*/
 		
 		function sendform (){
-			
-			
-			if( input_name.value=="" || input_mail.value == "" || input_message.value==""){
-				text.style.display = "block";
-			} else {
-							
 		var sendtab = [];
 		
 		sendtab.push(input_name.value);
@@ -222,15 +205,11 @@
 			});
 		}
 		sendData();
-				
-				toggle();
-				text.style.display = "none";
-	}	
-			
-}
+	}
+		
+
 	
 	
 	</script>
 </html>
-
 

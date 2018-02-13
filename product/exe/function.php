@@ -25,7 +25,8 @@ function foundResponsable($promo){
 
 //Obtenir toutes les promotions disponible dans le fichier Excel
 function getPromos($namefile){
-	$file = fopen('http://localhost/Absentia/product/exe/temp/' . $namefile, 'r');
+
+	$file = fopen('temp/' . $namefile, 'r');
 	$text = array();
 	fgets($file);
 
