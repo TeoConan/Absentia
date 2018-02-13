@@ -8,6 +8,7 @@
 <head>
 	<link rel="stylesheet" href="css/style.css" />
 	<script src="jquery.min.js"></script>
+	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Absentia</title>
@@ -23,7 +24,9 @@
 		
 			<div class="inner">
 				<div class="absentia nav-item">
-					<img src="img/absentia white.svg" alt="Absentia"/>
+					<a href="index.php">
+						<img src="img/absentia white.svg" alt="Absentia"/>
+					</a>
 				</div>
 				<div class="espl nav-item">
 					<a href="https://www.espl.fr">
@@ -33,8 +36,9 @@
 				<div class="nav-item">
 					<div class="inner-button">
 						<?php
-						$buttonnav = new Button('IMPORTER', true);
-						$buttonnav->setLink('preview.php');
+						$buttonnav = new Button('BESOIN D\'AIDE ?', true);
+						$buttonnav->setLink('help.php');
+						$buttonnav->setBackColor('#f5f5f5');
 						echo($buttonnav->getOutput());
 						?>
 	
@@ -52,25 +56,72 @@
 			<div class="inner-button">
 				<?php
 				$buttonnav = new Button('IMPORTER', true);
-				$buttonnav->setLink('preview.php');
+				$buttonnav->setID('button_choose');
 				echo($buttonnav->getOutput());
 			?>
 			</div>
-			<form method="post" action="preview.php">
-				<div class="inner-button">
-				
-				
-						<!------------ RECUP FICHIER ENVOYÉ ---------------->
-				<!----<input type="file" id="hiddenfile" style="display:none" name="file" onChange="getvalue();"/>---->
-	
-					 <!-- On limite le fichier à 100Ko -->
-					 <input type="hidden" name="MAX_FILE_SIZE" value="100000">
-					 Fichier : <input type="file" name="file">
-					 <input type="submit" name="envoyer" value="Envoyer le fichier">
-				</div>
+			
+			<form action="upload.php" method="post" enctype="multipart/form-data">
+			
+				<input type="file" accept=".csv" name="fileToUpload" id="fileToUpload" style="display: none;">
+				<input type="submit" value="Upload Image" name="submit" id="submit"  style="display: none;">
 			</form>
 
+			<?php
+			
+			/*
+
+			Errors :
+			0		:	aucune erreur
+			1		:	erreur extension
+			2		:	erreur de lecture
+			3		:	erreur de taille
+			4		:	fichier déjà existant
+			5		:	ok
+			6		:	ok
+			7		:	ok
+			8		:	ok
+			9		:	ok
+
+			*/
+			
+			if (!empty($_GET['e']) && $_GET['e'] != 0 && $_GET['e'] < 3){
+				echo('<p class="error">Une erreur est survenu lors de l\'importation du fichier');
+				
+				$output = '<p class="error">';
+				
+				switch($_GET['e']){
+					case 1:
+						$output .= 'Le fichier doit être être au format CSV <a class="error" href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">Comment faire ?</a>';
+						break;
+						
+					case 2:
+						$output .= 'Une erreur de lecture, le fichier peut être endommagé';
+						break;
+				}
+				
+				$output .= '<br>Code d\'erreur ' . $_GET['e'];
+				
+				echo($output);
+			}
+			
+			?>
+			
 		</main>
+		
+		<script type="text/javascript">
+			var button_choose = document.getElementById('button_choose');
+			var fileChooser = document.getElementById('fileToUpload');
+			var submiter = document.getElementById('submit');
+			
+			fileChooser.addEventListener('change', function(){
+				submiter.click();
+			}, false);
+			
+			button_choose.addEventListener('click', function(){
+				fileChooser.click();
+			}, false);
+		</script>
 	</div>
 		
 	<footer class="block-footer">

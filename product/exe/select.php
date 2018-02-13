@@ -19,7 +19,7 @@ if(isset($_POST)){
 			$absentialist[$i] = new AbsentiaList($promoselect[$i], array());
 		}
 		
-		print_r($promoselect);
+		//print_r($promoselect);
 		
 		//File
 		
@@ -27,7 +27,7 @@ if(isset($_POST)){
 		$text = array();
 		fgets($file);
 
-		//Décoder les caractères sépciaux
+		//Décoder les caractères speciaux
 		while (!feof($file)){
 			$lines[] = html_entity_decode(utf8_encode(fgets($file)));
 		}
@@ -43,7 +43,7 @@ if(isset($_POST)){
 			}
 		}
 		
-		print_r($students);
+		//print_r($students);
 		
 		
 		
@@ -52,16 +52,18 @@ if(isset($_POST)){
 		
 		$temp = array();
 		
+		//Pour chaque student
 		for($i=0;$i<sizeof($students);$i++){
 			$current_student = $students[$i];
 			
 			//Ajouter les étudiants dans les Absentia List
 			for($i1=0;$i1<sizeof($promoselect);$i1++){
 				
+				//Si correspondent à la selection
 				if($current_student->_class == $promoselect[$i1]){
 					$current_list = $absentialist[$i1];
 					
-					echo('		List ' . $current_list->_id . ' student ' . $current_student->_name);
+					//echo('		List ' . $current_list->_id . ' student ' . $current_student->_name);
 					$current_list->addStudent($current_student);
 				}
 			}
