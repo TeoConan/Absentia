@@ -9,6 +9,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/style.css" />
 	<title>Absentia - Aide</title>
+	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
 </head>
 <body class="page-help">
 
