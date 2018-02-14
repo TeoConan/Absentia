@@ -11,6 +11,9 @@ var btdl = $('.block-center .inner-button .button');
 //Input search
 var inputsearch = document.getElementById('input_search');
 
+//Select all
+var select_all = document.getElementById('select_all');
+
 initPromp();
 
 //Test
@@ -58,9 +61,37 @@ function initPromp(event){
 		console.log('Input : ' + inputsearch.value);
 	  	if(inputsearch.value != ""){
 			search(inputsearch.value);
+			
 	  	} else {
 			displayAll();
 		}
+		
+		//All selected
+		
+		if (!allisSelect()){
+			$(select_all).css('background-color', "transparent");
+			$(select_all).find("img").attr('src', 'res/icons/ic_check_grey_24px.svg');
+		} else {
+			$(select_all).css('background-color', "rgb(124, 179, 66)");
+			$(select_all).find("img").attr('src', 'res/icons/ic_check_white_24px.svg');
+		}
+	});
+	
+	//Select all
+	$(select_all).click(function(){
+		
+		
+		console.log($(select_all).css('background-color'));
+		if ($(select_all).css('background-color') == "rgb(124, 179, 66)"){
+			$(select_all).css('background-color', "transparent");
+			$(select_all).find("img").attr('src', 'res/icons/ic_check_grey_24px.svg');
+			force_unselectAll();
+		} else {
+			$(select_all).css('background-color', "rgb(124, 179, 66)");
+			$(select_all).find("img").attr('src', 'res/icons/ic_check_white_24px.svg');
+			force_selectAll();
+		}
+		
 	});
 }
 
@@ -105,9 +136,34 @@ function getListPromo(){
 
 
 
+function force_unselectAll(){
+	console.log('force_unselectAll');
+	
+	var elements = document.getElementsByClassName('item-promotion');
+	var element;
+	
+	for(var i = 0; i < elements.length; i++){
+		element = $('.item-promotion:nth-child(' + (i+1) + ')');
+		$('.item-promotion:nth-child(' + (i+1) + ') img').attr("src", 'res/icons/ic_add_circle_outline_white.svg');
+		
+		$(element).find('> .item.promotion').removeClass('checked');
+	}
+}
 
-
-
+function force_selectAll(){
+	console.log('force_selectAll');
+	var elements = document.getElementsByClassName('item-promotion');
+	var element;
+	
+	for(var i = 0; i < elements.length; i++){
+		element = $('.item-promotion:nth-child(' + (i+1) + ')');
+		
+		if($(element).css('display') != "none"){
+			$('.item-promotion:nth-child(' + (i+1) + ') img').attr("src", 'res/icons/ic_check_white_24px.svg');
+			$(element).find('> .item.promotion').addClass('checked');
+		}
+	}
+}
 
 function selectAll(){
 	var elements = document.getElementsByClassName('item-promotion');
@@ -115,6 +171,34 @@ function selectAll(){
 	for(var i = 0; i < elements.length; i++){
 		select(i+1);
 	}
+}
+
+function allisSelect(){
+	
+	console.log('force_selectAll');
+	var elements = document.getElementsByClassName('item-promotion');
+	var element;
+	var output = false;
+	var selected = 0;
+	var nbritems = 0;
+	
+	for(var i = 0; i < elements.length; i++){
+		element = $('.item-promotion:nth-child(' + (i+1) + ')');
+		
+		if($(element).css('display') != "none"){
+			nbritems++;
+			if ($(element).find('.checked').length > 0){
+				selected++;
+			}
+		}
+	}
+	
+	console.log(selected + ' item selected / ' + nbritems);
+	if (nbritems == selected && nbritems > 0){
+		output = true;
+	}
+	
+	return(output);
 }
 
 function select(child){
@@ -141,9 +225,8 @@ function select(child){
 	//Back
 	
 	$(element).find('> .item.promotion').toggleClass('checked');
+	
 }
-
-
 
 function toggleLoad(element, txt){
 	console.log('toggleLoad');
@@ -213,8 +296,18 @@ function switchItem(event){
 
 	//TODO
 	//Lancer l'animation des icones
+	//All
+	$(select_all).css('background-color', "transparent");
+	$(select_all).find("img").attr('src', 'res/icons/ic_check_grey_24px.svg');
+	
 	changeIcon(event);
 	changeBackground(event);
+	
+	//All selected
+	if (allisSelect()){
+		$(select_all).css('background-color', "rgb(124, 179, 66)");
+		$(select_all).find("img").attr('src', 'res/icons/ic_check_white_24px.svg');
+	}
 }
 
 function changeIcon(event){

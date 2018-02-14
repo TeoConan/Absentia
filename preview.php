@@ -70,18 +70,13 @@
 				<div class="block-list">
 					<div class="inner">
 						<div class="recherche">
+							<div class="select-all" id="select_all">
+								<img src="res/icons/ic_check_grey_24px.svg" id="img_uncheck">
+							</div>
 							<img src="img/ic_search_black_24px.svg" id="img_search">
 							<input type="text" name="name" id="input_search" placeholder="Rechercher">
 						</div>
-						<div class="select all" style="
-							display:  flex;
-							padding: 10px 10px 0px 10px;
-						">
-													<input id="checkBox" type="checkbox">
-													<p style="
-							margin:  0;
-						">Tout selectionner</p>
-						</div>
+						
 						<ul class="content-promotion">
 						
 							<?php
