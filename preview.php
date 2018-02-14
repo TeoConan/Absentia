@@ -109,6 +109,8 @@
 							
 							?>
 						</ul>
+						
+						<p class="error">Aucun résultat.</p>
 					</div>
 				</div>
 			</div>

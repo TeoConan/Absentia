@@ -39,6 +39,7 @@ function initPromp(event){
 	console.log('Function initPromp');
 	
 	var listitems = document.getElementsByClassName('item-promotion');
+	$('.page-preview .block-list p.error').css('display', 'none');
 	
 	//Changer le background de bleue à vert lors d'un click
 	for (var i=0; i< listitems.length; i++){
@@ -59,6 +60,7 @@ function initPromp(event){
 	
 	$( "#input_search" ).keyup(function() {
 		console.log('Input : ' + inputsearch.value);
+		$('.page-preview .block-list p.error').css('display', 'none');
 	  	if(inputsearch.value != ""){
 			search(inputsearch.value);
 			
@@ -112,6 +114,7 @@ function search(search){
 	
 	var output = [];
 	var elements = document.getElementsByClassName('item-promotion');
+	var match = 0;
 	
 	
 	for(var i = 0; i < strlist.length; i++){
@@ -119,7 +122,12 @@ function search(search){
 			elements[i].style.display = 'none';
 		} else {
 			elements[i].style.display = 'block';
+			match++;
 		}
+	}
+	
+	if(match == 0){
+		$('.page-preview .block-list p.error').css('display', 'block');
 	}
 	
 	console.log(output);
