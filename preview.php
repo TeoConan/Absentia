@@ -17,7 +17,9 @@
 	<link rel="stylesheet" href="css/style.css" />
 	<script src="jquery.min.js"></script>
 	<meta charset="utf-8">
+	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
 	<title>Absentia - Promotions</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body class="page-preview">
@@ -41,7 +43,7 @@
 					<div class="inner-button">
 						<?php
 						$buttonnav = new Button('IMPORTER', true);
-						$buttonnav->setLink('');
+						$buttonnav->setID('button_choose');
 						echo($buttonnav->getOutput());
 						?>
 					</div>
@@ -50,25 +52,37 @@
 
 			</div>
 		</header>
+		
+		
 
 		<main class="block-center">
 			<div class="inner">
-			<div class="inner-button">
-				<?php
-					if (!$error && $exist){
-						$buttonnav = new Button('TÉlÉCHARGER', true);
-						$buttonnav->setLink('');
-						echo($buttonnav->getOutput());
-					}
-						
-				?>
-			</div>
+				<div class="inner-button">
+					<?php
+						if (!$error && $exist){
+							$buttonnav = new Button('TÉlÉCHARGER', true);
+							$buttonnav->setLink('');
+							echo($buttonnav->getOutput());
+						}
+
+					?>
+				</div>
 				<div class="block-list">
 					<div class="inner">
 						<div class="recherche">
-							<img src="img/ic_search_black_24px.svg">
-							<input type="text" name="name" id="name" placeholder="Rechercher">
+							<div class="select-all" id="select_all">
+								<img src="res/icons/ic_check_grey_24px.svg" id="img_uncheck">
+							</div>
+						
+							<div class="change-view" id="switch_view">
+								<img src="res/icons/icon_list_grey.svg" id="">
+							</div>
+							
+							
+							<img src="img/ic_search_black_24px.svg" id="img_search">
+							<input type="text" name="name" id="input_search" placeholder="Rechercher">
 						</div>
+						
 						<ul class="content-promotion">
 						
 							<?php
@@ -94,83 +108,24 @@
 							
 							
 							?>
-						
-							
-							<!--
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							
-							-->
 						</ul>
+						
+						<p class="error">Aucun résultat.</p>
 					</div>
 				</div>
 			</div>
 				
 			<div class="inner-button">
-				<?php
-					$buttonnav = new Button('TÉlÉCHARGER', true);
-					$buttonnav->setLink('Lauralabest');
-					echo($buttonnav->getOutput());
-				?>
-			</div>
+					<?php
+						if (!$error && $exist){
+							$buttonnav = new Button('TÉlÉCHARGER', true);
+							$buttonnav->setLink('');
+							$buttonnav->setID('download');
+							echo($buttonnav->getOutput());
+						}
+
+					?>
+				</div>
 		</div>
 	</main>	
 	<footer class="block-footer">
@@ -182,6 +137,25 @@
 		</div>
 	</footer>
 	
-	<script type="text/javascript" src="product/script.js"></script>
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+		<input type="file" accept=".csv" name="fileToUpload" id="fileToUpload" style="display: none;">
+		<input type="submit" value="Upload Image" name="submit" id="submit"  style="display: none;">
+	</form>
+	
+	<script type="text/javascript">
+			var button_choose = document.getElementById('button_choose');
+			var fileChooser = document.getElementById('fileToUpload');
+			var submiter = document.getElementById('submit');
+			
+			fileChooser.addEventListener('change', function(){
+				submiter.click();
+			}, false);
+			
+			button_choose.addEventListener('click', function(){
+				fileChooser.click();
+			}, false);
+		</script>
+	<script type="text/javascript" src="script.js"></script>
+	
 </body>
 </html>
