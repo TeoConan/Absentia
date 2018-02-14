@@ -72,6 +72,15 @@
 		
 		</div>
 	</main>
+	
+	<footer class="block-footer">
+		<div class="inner">
+			<a href="https://www.espl.fr/mentions-legales">Mentions légales</a>
+			<a href="https://www.espl.fr">ESPL.fr</a>
+			<a href="https://planning-espl.eduservices.org/hp/">Hyperplanning</a>
+			<p id="linkpopup">Signaler un problème</p>
+		</div>
+	</footer>
 
 </body>
 </html>

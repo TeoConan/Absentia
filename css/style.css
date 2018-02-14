@@ -221,7 +221,7 @@ body > .inner > .background {
 
 
 body.page-preview > .inner > .background {
-	background-image: url("../img/back.jpg");
+	background-image: url(" ../img/startup-593344_1920.jpg");
 	z-index: 2;
 }
 
@@ -436,7 +436,12 @@ li.item.promotion {
     z-index: 10;
 }
 
-
+.page-help {
+	background-image: url(../res/material_white.jpg);
+	background-repeat: no-repeat;
+	
+	
+}
 .page-help > .background{
 	position: absolute;
 	top: 0;
@@ -683,15 +688,5 @@ li.item.promotion {
 	
 	.block-header .nav-item {
 		width: auto;
-	}
-	
-	.page-help .block-center {
-		display: flex;
-		background-image: url(../res/material_white.jpg);
-		background-repeat: repeat;
-		position: inherit;
-		top: 0;
-		right: 0;
-		transform: none;
 	}
 }
