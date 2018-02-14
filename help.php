@@ -13,6 +13,10 @@
 </head>
 <body class="page-help">
 
+<?php
+		include('popup.php');
+?>
+
 	<div class="background"></div>
 	<header class="block-header">
 		<div class="inner">
@@ -83,4 +87,5 @@
 	</footer>
 
 </body>
+<script src="popup.js"></script>
 </html>

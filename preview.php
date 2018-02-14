@@ -24,6 +24,9 @@
 
 <body class="page-preview">
 
+<?php
+		include('popup.php');
+?>
 	<div class="inner">
 		<div class="background"></div>
 		<header class="block-header">
@@ -133,7 +136,8 @@
 			<a href="#">Mentions légales</a>
 			<a href="https://www.espl.fr">ESPL.fr</a>
 			<a href="https://planning-espl.eduservices.org/hp/">Hyperplanning</a>
-			<a href="#">Signaler un problème</a>
+			<p id="linkpopup">Signaler un problème</p>
+			
 		</div>
 	</footer>
 	
@@ -156,6 +160,9 @@
 			}, false);
 		</script>
 	<script type="text/javascript" src="script.js"></script>
-	
+	<script src="popup.js"></script>
 </body>
+
+	
+	
 </html>
