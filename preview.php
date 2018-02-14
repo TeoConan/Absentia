@@ -73,6 +73,12 @@
 							<div class="select-all" id="select_all">
 								<img src="res/icons/ic_check_grey_24px.svg" id="img_uncheck">
 							</div>
+						
+							<div class="change-view" id="switch_view">
+								<img src="res/icons/icon_list_grey.svg" id="">
+							</div>
+							
+							
 							<img src="img/ic_search_black_24px.svg" id="img_search">
 							<input type="text" name="name" id="input_search" placeholder="Rechercher">
 						</div>
@@ -102,71 +108,6 @@
 							
 							
 							?>
-						
-							
-							<!--
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<li class="item promotion">
-								<div class="item promotion">
-									<div class="inner">
-										<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon">
-										<p>ASSISTANT DE GESTION 1�ANNEE , ASSISTANT DE GESTION 1�ANNEE ALTERNANT - 
-										<span>Johan Marchesseau</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							
-							-->
 						</ul>
 					</div>
 				</div>

@@ -69,7 +69,7 @@ function initPromp(event){
 		//All selected
 		
 		if (!allisSelect()){
-			$(select_all).css('background-color', "transparent");
+			$(select_all).css('background-color', "");
 			$(select_all).find("img").attr('src', 'res/icons/ic_check_grey_24px.svg');
 		} else {
 			$(select_all).css('background-color', "rgb(124, 179, 66)");
@@ -83,7 +83,7 @@ function initPromp(event){
 		
 		console.log($(select_all).css('background-color'));
 		if ($(select_all).css('background-color') == "rgb(124, 179, 66)"){
-			$(select_all).css('background-color', "transparent");
+			$(select_all).css('background-color', "");
 			$(select_all).find("img").attr('src', 'res/icons/ic_check_grey_24px.svg');
 			force_unselectAll();
 		} else {
@@ -92,6 +92,13 @@ function initPromp(event){
 			force_selectAll();
 		}
 		
+	});
+	
+	//Switch view
+	
+	$('#switch_view').click(function(){
+		
+		switchView();
 	});
 }
 
@@ -291,13 +298,46 @@ function makeList(){
 	sendData();*/
 }
 
+function switchView(){
+	console.log('Switch View');
+	
+	var inner = $('.page-preview .block-center > .inner');
+	var contentpromo = $('.page-preview .block-list .content-promotion');
+	var card = $('.page-preview .block-list');
+	var time = 250;
+	
+	console.log(inner);
+	console.log(contentpromo);
+	if ($(inner).css('max-width') == '1250px'){
+		
+		$(card).fadeOut(time, function(){
+			console.log('List View');
+			$(inner).css('max-width', "1000px");
+			$(contentpromo).css('flex-wrap', 'wrap');
+			//$(contentpromo).css('justify-content', 'space-evenly');
+			$(contentpromo).css('flex-direction', 'column');
+		});
+		$(card).fadeIn(time);
+		
+	} else {
+		$(card).fadeOut(time, function(){
+			console.log('Grid View');
+			$(inner).css('max-width', "1250px");
+			$(contentpromo).css('flex-wrap', 'wrap');
+			$(contentpromo).css('justify-content', 'space-evenly');
+			$(contentpromo).css('flex-direction', 'row');
+		});
+		$(card).fadeIn(time);
+	}
+}
+
 function switchItem(event){
 	//console.log('Function switchItem');
 
 	//TODO
 	//Lancer l'animation des icones
 	//All
-	$(select_all).css('background-color', "transparent");
+	$(select_all).css('background-color', "");
 	$(select_all).find("img").attr('src', 'res/icons/ic_check_grey_24px.svg');
 	
 	changeIcon(event);

@@ -300,6 +300,7 @@ body.page-preview .block-center .inner-button {
     cursor: pointer;
     height: 40px;
     width: 40px;
+	margin-right: 5px;
 	transition: all .25s ease-in-out;
 }
 
@@ -313,7 +314,28 @@ body.page-preview .block-center .inner-button {
 	
 }
 
+/* Grid */
 
+.page-preview .change-view {
+	display: flex;
+	border-radius: 50%;
+    cursor: pointer;
+    height: 40px;
+	min-width: 40px;
+    width: 40px;
+	margin-right: 5px;
+	transition: all .25s ease-in-out;
+}
+
+.page-preview .change-view:hover {
+	background-color: #e0e0e0;
+}
+
+.page-preview .change-view img {
+	height: 20px !important;
+	width: 20px !important;
+	margin: auto !important;
+}
 
 
 
@@ -343,7 +365,7 @@ body.page-preview .block-center .inner-button {
 }
 
 .page-preview .block-list .content-promotion > li {
-	margin: 10px 0;
+	margin: 10px;
 	transition: all .25s ease-in-out;
 }
 
