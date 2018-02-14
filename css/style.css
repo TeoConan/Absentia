@@ -418,7 +418,6 @@ li.item.promotion {
 .page-help .block-center {
 	display: flex;
 	margin: 0 auto;
-	padding-top: 50px;
 	max-width: 1000px;
     position: inherit;
     top: 0;
@@ -436,12 +435,6 @@ li.item.promotion {
     z-index: 10;
 }
 
-.page-help {
-	background-image: url(../res/material_white.jpg);
-	background-repeat: no-repeat;
-	
-	
-}
 .page-help > .background{
 	position: absolute;
 	top: 0;
@@ -451,7 +444,7 @@ li.item.promotion {
 	background-image: url("../img/paper.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	z-index: 2;
+	z-index: -1;
 }
 
 .page-help .block-center > .inner {
