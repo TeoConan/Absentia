@@ -109,4 +109,19 @@ function exist_in_tab($key, $array) {
 
 	return $exist;
 }
+
+
+function exist_index($key, $array){
+	$output = -1;
+	
+	for($i = 0; $i < sizeof($array); $i++){
+		if($key == $elem){
+			$output == $i;
+		}
+	}
+	
+	return($output);
+}
+
+
 ?>

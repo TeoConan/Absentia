@@ -166,5 +166,12 @@
 		</script>
 	<script type="text/javascript" src="script.js"></script>
 	
+	
+	
+	
+	<div style="position: fixed; bottom: 0;height: 500px;background-color: white;width: 300px;right: 0; overflow: scroll;">
+		<button id="clear" style=" right: 0; position: absolute;">Clear</button>
+		<p id="console"></p>
+	</div>
 </body>
 </html>
