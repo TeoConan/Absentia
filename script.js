@@ -7,7 +7,7 @@ var itempromo = document.getElementsByClassName('item-promotion');
 //Ul accueillant les items
 var listpromo = document.getElementById('content-promotion');
 //Boutons download
-var btdl = $('.block-center .inner-button .button');
+var btdl = $('.block-center .inner-button .button.dl');
 //Input search
 var inputsearch = document.getElementById('input_search');
 
@@ -84,12 +84,12 @@ function initPromp(event){
 		
 		
 		console.log($(select_all).css('background-color'));
-		if ($(select_all).css('background-color') == "rgb(124, 179, 66)"){
+		if ($(select_all).css('background-color') == "rgb(64, 152, 67)"){
 			$(select_all).css('background-color', "");
 			$(select_all).find("img").attr('src', 'res/icons/ic_check_grey_24px.svg');
 			force_unselectAll();
 		} else {
-			$(select_all).css('background-color', "rgb(124, 179, 66)");
+			$(select_all).css('background-color', "rgb(64, 152, 67)");
 			$(select_all).find("img").attr('src', 'res/icons/ic_check_white_24px.svg');
 			force_selectAll();
 		}
@@ -295,15 +295,16 @@ function makeList(){
 	
 	//Envoyer la liste des promotions selectionnées
 	
-	/*var sendData = function() {
-		$.post('exe/select.php', {
+	var sendData = function() {
+		$.post('product/exe/select.php', {
 		data: sendtab
 		}, function(response) {
+			console.log('Output :');
 			console.log(response);
 			
 		});
 	}
-	sendData();*/
+	sendData();
 }
 
 function switchView(){

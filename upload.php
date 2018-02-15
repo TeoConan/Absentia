@@ -48,6 +48,9 @@ if (!empty(basename($_FILES["fileToUpload"]["name"]))){
 			echo('Move and rename to ' . $target_dir . $randomname . '	/	');
 
 		}
+		
+		
+		
 		//Si erreur 4
 		if ($error == 4){
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir . $randomname)) {
@@ -67,6 +70,8 @@ if (!empty(basename($_FILES["fileToUpload"]["name"]))){
 		} else {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 				echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+				
+				header('Location: preview.php?file=' . $randomname);
 			} else {
 				echo "Sorry, there was an error uploading your file.";
 				if ($error != 0){
@@ -88,7 +93,4 @@ if (!empty(basename($_FILES["fileToUpload"]["name"]))){
 	}
 }
 
-/*if ($error != 0){
-	header('Location: index.php?e=' . $error);
-}*/
 ?>

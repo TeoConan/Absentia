@@ -8,6 +8,7 @@
 	$exist = false;
 
 	if (empty($_GET['file'])){$error = true;}
+	if ($_GET['file'] == ""){$error = true;}
 	if (file_exists('product/exe/temp/' . $_GET['file'])){$exist = true;}
 ?>
 
@@ -41,6 +42,7 @@
 				</div>
 				<div class="nav-item">
 					<div class="inner-button">
+					
 						<?php
 						$buttonnav = new Button('IMPORTER', true);
 						$buttonnav->setID('button_choose');
@@ -58,10 +60,20 @@
 		<main class="block-center">
 			<div class="inner">
 				<div class="inner-button">
+				<a class="button default" target="help.php" href="help.php">
+						<span>
+							BESOIN D'AIDE ?
+						</span>
+					</a>
+				</div>
+			
+				<div class="inner-button">
+				
 					<?php
 						if (!$error && $exist){
 							$buttonnav = new Button('TÉlÉCHARGER', true);
 							$buttonnav->setLink('');
+							$buttonnav->addClass('dl');
 							echo($buttonnav->getOutput());
 						}
 
@@ -118,9 +130,6 @@
 			<div class="inner-button">
 					<?php
 						if (!$error && $exist){
-							$buttonnav = new Button('TÉlÉCHARGER', true);
-							$buttonnav->setLink('');
-							$buttonnav->setID('download');
 							echo($buttonnav->getOutput());
 						}
 

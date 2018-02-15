@@ -43,7 +43,7 @@ class AbsentiaList
 		$allstudents = $this->_students;
 		$output = false;
 		
-		print_r($this->_students);
+		//print_r($this->_students);
 		//echo('	Recherche de ' . $name . ' dans un tableau de ' . sizeof($this->_students) . ' cases	/	');
 		for ($i = 0; $i < sizeof($this->_students); $i++){
 			//echo('	Comparaison recherche : ' . $this->_students[$i]->_name . ' ? ' . $name . ' = ' . ($this->_students[$i]->_name == $name) . ' /		');
@@ -108,7 +108,10 @@ class AbsentiaList
 
 		$tempstr = explode('h', $strh2);
 		$h2 = $tempstr[0];
-		$m2 = $tempstr[1];
+		if(!empty($tempstr[1])){
+			$m2 = $tempstr[1];
+		} else {$m2 = '0';}
+		
 
 		$hout = $h1 + $h2;
 		$mout = $m1 + $m2;
