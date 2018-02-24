@@ -105,6 +105,14 @@ function initPromp(event){
 		
 		switchView();
 	});
+	
+	
+	//Auto switch view
+	var elements = document.getElementsByClassName('item-promotion');
+	
+	if ($(elements).length > 10){
+		switchView();
+	}
 }
 
 //Search
@@ -339,7 +347,7 @@ function makeList(){
 		}, function(response) {
 			console.log('Output :');
 			console.log(response);
-			$('#console').append(response);
+			//$('#console').text(response);
 			
 		});
 	}
