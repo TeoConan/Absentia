@@ -245,6 +245,6 @@ array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
 
 $absentiaList = new AbsentiaList('MDS B1', $students);
 
-downloadAbsentiaPDF($absentiaList);
+//downloadAbsentiaPDF($absentiaList);
 
 ?>
