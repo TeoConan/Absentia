@@ -8,6 +8,7 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/style.css" />
+	<script src="jquery.min.js"></script>
 	<title>Absentia - Aide</title>
 	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
 </head>
@@ -16,6 +17,12 @@
 <?php
 		include('popup.php');
 ?>
+	
+	<div class="overlay" id="viewer-overlay" style="display: none;">
+		<div class="viewer">
+			<img src="img/Sans titre-1.jpg">
+		</div>
+	</div>
 
 	<div class="background"></div>
 	<header class="block-header">
@@ -27,7 +34,7 @@
 			</div>
 			<div class="espl nav-item">
 				<a href="https://www.espl.fr">
-					<img src="img/logo_1.png">
+					<img src="img/Logo ESPL Campus V2 Blanc.png">
 				</a>
 			</div>
 			<div class="nav-item">
@@ -54,7 +61,7 @@
 		<div class="inner">
 			
 			<section>
-				<h2>À quoi sert Absentia ?</h2>
+				<div class="question"><h2>À quoi sert Absentia</h2><img src="img/iconquestion.svg" id="interrogation"><script src="help.js"></script>	</div>
 				<p>Il s'agit d'une plateforme créée spécialement pour le campus de l'ESPL. Elle permet à l'administration de gérer les absences des étudiants de manière plus simple et efficace. A partir d'un fichier Excel, il sera généré des "Absentia List". Sur ces dernières figureront le résumé des absences de chaque élève en fonction de la promotion choisie.</p>
 			</section>
 			
@@ -87,5 +94,7 @@
 	</footer>
 
 </body>
+
 <script src="popup.js"></script>
+
 </html>

@@ -56,7 +56,7 @@ body > .inner > .background {
 
 .block-header .inner {
 	display : flex;
-	padding: 50px 0;
+	padding: 30px 0;
 	border-bottom: 1.5px solid white;
 }
 
@@ -97,7 +97,7 @@ body > .inner > .background {
 }
 
 .block-header .espl img {
-	height: 50px;
+	height: 110px;
 }
 
 /* MAIN */
@@ -459,10 +459,6 @@ li.item.promotion {
 /* HELP */
 
 
-.page-help {
-	
-}
-
 .page-help .block-center > *{
 	z-index: 3;
 }
@@ -510,7 +506,7 @@ li.item.promotion {
 	padding: 10px 40px;
 	border-radius: 10px;
 	box-shadow: 0px 14px 20px rgba(0,0, 0 ,0.2);
-	margin-bottom: 60px;
+	margin-bottom: 70px;
 }
 
 .page-help .block-center > .title2 {
@@ -523,13 +519,14 @@ li.item.promotion {
 
 .page-help .block-center h1{
 	margin-bottom: 30px;
+	margin-top: 30px;
 	font-size: 3.3rem;
 }
 
 .page-help .block-center h2{
 	text-align: left;
 	color: black;
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 }
 
 .page-help .block-center a{
@@ -546,6 +543,45 @@ li.item.promotion {
 	height: 0px;
 	width: 100%;
 	
+}
+
+.page-help .block-center .inner .question {
+	display: flex;
+}
+
+.page-help .block-center .inner .question h2{
+	display: inline-block;
+}
+
+.page-help .block-center .inner .question img{
+	height: 30px;
+	margin: auto 5px auto auto;
+	cursor: pointer;
+	transition: all 0.75s ease-in-out;
+}
+
+/* OVERLAY */
+
+.page-help .overlay {
+	background-color: rgba(0,0,0,0.5);
+	position: fixed;
+    z-index: 999;
+    height: 100vh;
+    width: 100vw;
+	top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.page-help .overlay .viewer img{
+	position: absolute;
+	top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+	margin: auto;
+    cursor: pointer; /* Add a pointer on hover */
 }
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -579,6 +615,12 @@ li.item.promotion {
 	flex-direction: column;
 }
 
+.popup .inner p {
+	font-family: 'Carlito', sans-serif;
+	color: red;
+	margin: auto;
+	margin-bottom: 23px;
+}
 	/* ICONS */
 
 .popup .inner .title img {
@@ -716,7 +758,7 @@ li.item.promotion {
 
 /* RESPONSIVE */
 
-@media (max-width: 1200px){
+@media (max-width: 1450px){
 	.block-header .inner {
 		flex-direction: column;
 		border-bottom: none;

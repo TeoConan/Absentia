@@ -43,7 +43,7 @@ class AbsentiaList
 		$allstudents = $this->_students;
 		$output = false;
 		
-		print_r($this->_students);
+		//print_r($this->_students);
 		//echo('	Recherche de ' . $name . ' dans un tableau de ' . sizeof($this->_students) . ' cases	/	');
 		for ($i = 0; $i < sizeof($this->_students); $i++){
 			//echo('	Comparaison recherche : ' . $this->_students[$i]->_name . ' ? ' . $name . ' = ' . ($this->_students[$i]->_name == $name) . ' /		');
@@ -102,16 +102,29 @@ class AbsentiaList
 	}
 	
 	function addHours($strh1, $strh2){
+		//echo('//Add h ' . $strh1 . ' + ' . $strh2. '	//	');
+		
 		$tempstr = explode('h', $strh1);
 		$h1 = $tempstr[0];
-		$m1 = $tempstr[1];
+		if(!empty($tempstr[1])){
+			$m1 = $tempstr[1];
+		} else {$m1 = '0';}
+		
+		//echo('//h1 = ' . intval($h1) . ' + m1 = ' . intval($m1) . '	//	');
+		
 
 		$tempstr = explode('h', $strh2);
 		$h2 = $tempstr[0];
-		$m2 = $tempstr[1];
-
-		$hout = $h1 + $h2;
-		$mout = $m1 + $m2;
+		if(!empty($tempstr[1])){
+			$m2 = $tempstr[1];
+		} else {$m2 = '0';}
+		
+		//echo('//h2 = ' . intval($h2) . ' + m2 = ' . intval($m2) . '	//	');
+		
+		$hout = intval($h1) + intval($h2);
+		$mout = intval($m1) + intval($m2);
+		
+		//echo('//Actual hout = ' . $hout . ' mout = ' . $mout. '	//	');
 		
 		if($mout >= 60){
 			$hout++;
@@ -135,36 +148,50 @@ class AbsentiaList
 	}
 	
 	public function mergeStudents($st1, $st2){
-		$lessons = (
-			$st1->_lesson_missed + $st2->_lesson_missed
-		);
+		$output = "";
 		
-		$hours = $this->addHours($st1->_hours_missed, $st2->_hours_missed);
-		
-		$sms = $st1->_send_sms;
-		if ($sms == 'Aucun destinataire SMS' || $sms == 'Aucun'){
-			$sms = $st2->_send_sms;
+		if (is_numeric($st1->_lesson_missed) &&
+			is_numeric($st2->_lesson_missed)) {
+			$lessons = (
+				$st1->_lesson_missed + $st2->_lesson_missed
+			);
+
+			//echo('//	nbr lessons = ' + $lessons);
+
+			if($st1->_hours_missed == null || $st2->_hours_missed == null){
+				echo('	//	Missing info for merging hours : st1 = ' . $st1->_hours_missed . ' st2 = ' . $st2->_hours_missed . '	//	');
+			} else {
+				$hours = $this->addHours($st1->_hours_missed, $st2->_hours_missed);
+			}
+			
+			$sms = $st1->_send_sms;
+			if ($sms == 'Aucun destinataire SMS' || $sms == 'Aucun'){
+				$sms = $st2->_send_sms;
+			}
+
+			$letter = $st1->_send_letter;
+			if ($letter == 'Aucun'){
+				$letter = $st2->_send_letter;
+			}
+
+			if(!empty($st1->_date)){
+				$date = $st1->_date . ' & ' . $st2->_date;
+			}
+
+			$newst = new Student($st1->_name, $st1->_class, $date, $hours, $lessons, $st1->_attachement, $st1->_motive, $letter, $sms, $st1->_justificatory);
+			$output = $newst;
+
+			/*echo('		ST1  : ');
+			print_r($st1);
+			echo('		ST2  : ');
+			print_r($st2);
+			echo('		MERGE result : ');
+			print_r($newst);*/
 		}
 		
-		$letter = $st1->_send_letter;
-		if ($letter == 'Aucun'){
-			$letter = $st2->_send_letter;
-		}
+			
 		
-		$date = $st1->_date . ' & ' . $st2->_date;
-
-		$newst = new Student($st1->_name, $st1->_class, $date, $hours, $lessons, $st1->_attachement, $st1->_motive, $letter, $sms, $st1->_justificatory);
-		
-		
-		/*echo('		ST1  : ');
-		print_r($st1);
-		echo('		ST2  : ');
-		print_r($st2);
-
-		echo('		MERGE result : ');
-		print_r($newst);*/
-		
-		return($newst);
+		return($output);
 	}
 	
 	public function delete_double(){

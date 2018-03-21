@@ -39,7 +39,7 @@
 				</div>
 				<div class="espl nav-item">
 					<a href="https://www.espl.fr">
-						<img src="img/logo_1.png">
+						<img src="img/Logo ESPL Campus V2 Blanc.png">
 					</a>
 				</div>
 				<div class="nav-item">
