@@ -24,28 +24,32 @@ function foundResponsable($promo){
 
 //Obtenir toutes les promotions disponible dans le fichier Excel
 function getPromos($namefile){
-	$file = fopen('http://localhost/Absentia/product/exe/temp/' . $namefile, 'r');
-	$text = array();
-	fgets($file);
-
-	while (!feof($file)){
-		$lines[] = html_entity_decode(utf8_encode(fgets($file)));
-	}
-
-	//echo($lines[1]);
-	
 	$promos = array();
-	$temp = array();
+	$pathfile = './product/exe/temp/' . $namefile;
+	
+	if(file_exists($pathfile)){
+		$file = fopen($pathfile, 'r');
+		$text = array();
 
-	for($i=0;$i<sizeof($lines);$i++){
-		$temp = (explode(';', $lines[$i])); 
-		if (!empty($temp[1])){
-			$promos[] = $temp[1];
+		while (!feof($file)){
+			$lines[] = html_entity_decode(utf8_encode(fgets($file)));
 		}
+
+		//echo($lines[1]);
+		$temp = array();
+		
+		for($i=0;$i<sizeof($lines);$i++){
+				$temp = (explode(';', $lines[$i])); 
+				if (!empty($temp[1])){
+					$promos[] = $temp[1];
+				}
+		}
+
+		$promos = auto_remove_double($promos);
+	} else {
+		echo('File not found');
 	}
 
-	$promos = auto_remove_double($promos);
-	
 	return($promos);
 }
 

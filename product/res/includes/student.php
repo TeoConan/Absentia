@@ -23,7 +23,8 @@ class Student
 	public $_nbr_absence;
 	public $_attachement;
 	
-	public function __construct($name, $class, $strdate, $missed_hours, $missed_lesson, $attachement, $motive, $send_letter, $send_sms, $justificatory) {
+	public function __construct($name, $class, $strdate, $missed_hours = 0, $missed_lesson = 0,
+								$attachement = null, $motive = null, $send_letter = null, $send_sms = null, $justificatory = null) {
 		$this->_id = uniqid('student_');
 		if(!empty($name)){
 			$this->_name = $name;

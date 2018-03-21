@@ -29,6 +29,7 @@ $lines = [];
 $file = fopen('temp/' . $currentFile, 'r');
 $text = array();
 
+//Détection de l'header du fichier
 //Si le fichier excel a un header
 //fgets($file);
 
@@ -40,26 +41,33 @@ while (!feof($file)){
 	$lines[] = $entry;
 	//Décomposer la chaine
 	$read = explode(';', $entry);
-	//Récuperer la promotion de l'eleve (index 2)
-	$promo = $read[1];
-	//Si la promotion de l'eleve est presente dans les promotions selectionné
-	if(exist_in_tab($promo, $selectedPromotions)){
-		//Creer l'object student
-		$student = new Student($read[0], $read[1], '', $read[4], '');
-		
-		//Récuperer l'Absentia List qui a le label similaire à la promotion de l'eleve
-		$hispromo = $read[1];
-		for($i = 0; $i < sizeof($AbsentiaList); $i++){
-			//Si la classe de l'Absentia List est le même que celle de l'élève
-			if($AbsentiaList[$i]->_class == $hispromo){
-				//Ajouter l'objet dans la liste trouvée (et le merge)
-				$AbsentiaList[$i]->addStudent($student);
+	
+	//Si le tableau de lecture de line est vide, la ligne est bugée ou vide
+	if(!sizeof($read) == 0 && !empty($read[1])){
+		//Récuperer la promotion de l'eleve (index 2)
+		if(isset($read[1]) && !empty($read[1])){$promo = $read[1];}
+		//Si la promotion de l'eleve est presente dans les promotions selectionné
+		if(exist_in_tab($promo, $selectedPromotions)){
+			
+			//Si read[2] existe (qui correspondrai aux nombre d'heures cours manquées), l'intégrer dans le new Student
+			$h_missed = "";
+			if(isset($read[2]) && !empty($read[2])){$h_missed = $read[2];}
+			
+			//Creer l'object student
+			//						Name	class	  date	hours	lessons	attach	motive	Sletter	Ssms justify
+			$student = new Student($read[0], $read[1], '', $h_missed);
+
+			//Récuperer l'Absentia List qui a le label similaire à la promotion de l'eleve
+			$hispromo = $read[1];
+			for($i = 0; $i < sizeof($AbsentiaList); $i++){
+				//Si la classe de l'Absentia List est le même que celle de l'élève
+				if($AbsentiaList[$i]->_class == $hispromo){
+					//Ajouter l'objet dans la liste trouvée (et le merge)
+					$AbsentiaList[$i]->addStudent($student);
+				}
 			}
 		}
-		
-		
-	}
-	//
+	}	
 }
 
 //Suivi
@@ -68,7 +76,20 @@ print_r($AbsentiaList);
 
 
 
+//PDF
 
+include('../../pdf.php');
+
+if(sizeof($AbsentiaList) < 4){
+	for($i = 0; $i < sizeof($AbsentiaList); $i++){
+		downloadAbsentiaPDF($AbsentiaList[$i]);
+	}
+} else {
+	dowloadAbsentiaZIP($AbsentiaList);
+}
+
+
+//PDF
 
 
 
