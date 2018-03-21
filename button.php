@@ -168,7 +168,9 @@ class Button
 			$this->_link = $link;
 		}
 	
-	
+		public function addClass($class){
+			$this->_classes .= ' ' . $class;
+		}
 	
 	/* Doc */
 	

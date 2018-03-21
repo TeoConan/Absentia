@@ -43,6 +43,35 @@ body > .inner > .background {
 	
 }
 
+/* Browser CSS */
+
+	/* Scroll bar */
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+	border-radius: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+	border-radius: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+	border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+/* Browser CSS */
+
 /* HEADER */
 
 .block-header {
@@ -221,8 +250,7 @@ body > .inner > .background {
 
 
 body.page-preview > .inner > .background {
-
-	background-image: url(" ../img/startup-593344_1920.jpg");
+	background-image: url(../img/startup-593344_1920.jpg);
 	z-index: -1;
 }
 
@@ -254,6 +282,10 @@ body.page-preview > .inner {
 }
 
 	/* MAIN */
+
+.page-preview .block-center .inner-button:first-child {
+	margin-bottom: 0px;
+}
 
 body.page-preview .block-center .inner-button {
 	margin: 70px auto;

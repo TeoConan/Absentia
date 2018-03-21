@@ -174,7 +174,8 @@ class AbsentiaList
 				$letter = $st2->_send_letter;
 			}
 
-			if(!empty($st1->_date)){
+
+			if(!empty($st1->_date || !empty($st2->_date))){
 				$date = $st1->_date . ' & ' . $st2->_date;
 			}
 
