@@ -9,20 +9,20 @@ class Button
 	const BUTTON_TYPE_DEFAULT = 68456903;
 	const BUTTON_TYPE_CUSTOM = 30369812;
 	
-	private $_classes;
-	private $_only_use_classes;
-	private $_id;
+	public $_classes;
+	public $_only_use_classes;
+	public $_id;
 	
-	private $_back_color;
-	private $_border_radius;
-	private $_height;
-	private $_width;
+	public $_back_color;
+	public $_border_radius;
+	public $_height;
+	public $_width;
 
-	private $_text;
-	private $_font_size;
-	private $_font_color;
-	private $_font_family;
-	private $_link;
+	public $_text;
+	public $_font_size;
+	public $_font_color;
+	public $_font_family;
+	public $_link;
 
 
 	public function __construct($text, $default) {
@@ -167,6 +167,10 @@ class Button
 	
 		public function setLink($link){
 			$this->_link = $link;
+		}
+	
+		public function addClass($class){
+			$this->_classes .= ' ' . $class;
 		}
 	
 	

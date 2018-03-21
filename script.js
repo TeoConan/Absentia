@@ -7,7 +7,7 @@ var itempromo = document.getElementsByClassName('item-promotion');
 //Ul accueillant les items
 var listpromo = document.getElementById('content-promotion');
 //Boutons download
-var btdl = $('.block-center .inner-button .button');
+var btdl = $('.block-center .inner-button .button.dl');
 //Input search
 var inputsearch = document.getElementById('input_search');
 
@@ -49,11 +49,14 @@ function initPromp(event){
 	//Boutons telecharger
 	$(btdl).click(function(){
 		console.log('Dl');
-		toggleLoad($(btdl), 'TÉLÉCHARGER');
-		makeList();
-		setTimeout(function(){
+		if(!nothingSelect()){
 			toggleLoad($(btdl), 'TÉLÉCHARGER');
-		}, 1000);
+			makeList();
+			setTimeout(function(){
+				toggleLoad($(btdl), 'TÉLÉCHARGER');
+			}, 1000);
+		}
+		
 	});
 	
 	//Barre search
@@ -84,12 +87,12 @@ function initPromp(event){
 		
 		
 		console.log($(select_all).css('background-color'));
-		if ($(select_all).css('background-color') == "rgb(124, 179, 66)"){
+		if ($(select_all).css('background-color') == "rgb(64, 152, 67)"){
 			$(select_all).css('background-color', "");
 			$(select_all).find("img").attr('src', 'res/icons/ic_check_grey_24px.svg');
 			force_unselectAll();
 		} else {
-			$(select_all).css('background-color', "rgb(124, 179, 66)");
+			$(select_all).css('background-color', "rgb(64, 152, 67)");
 			$(select_all).find("img").attr('src', 'res/icons/ic_check_white_24px.svg');
 			force_selectAll();
 		}
@@ -102,6 +105,14 @@ function initPromp(event){
 		
 		switchView();
 	});
+	
+	
+	//Auto switch view
+	var elements = document.getElementsByClassName('item-promotion');
+	
+	if ($(elements).length > 10){
+		switchView();
+	}
 }
 
 //Search
@@ -148,9 +159,6 @@ function getListPromo(){
 	return(strlist);
 }
 
-
-
-
 function force_unselectAll(){
 	console.log('force_unselectAll');
 	
@@ -188,9 +196,8 @@ function selectAll(){
 	}
 }
 
-function allisSelect(){
-	
-	console.log('force_selectAll');
+function nothingSelect(){
+	console.log('nothingSelect');
 	var elements = document.getElementsByClassName('item-promotion');
 	var element;
 	var output = false;
@@ -209,6 +216,34 @@ function allisSelect(){
 	}
 	
 	console.log(selected + ' item selected / ' + nbritems);
+	if (selected == 0){
+		output = true;
+	}
+	
+	return(output);
+}
+
+function allisSelect(){
+	
+	//console.log('force_selectAll');
+	var elements = document.getElementsByClassName('item-promotion');
+	var element;
+	var output = false;
+	var selected = 0;
+	var nbritems = 0;
+	
+	for(var i = 0; i < elements.length; i++){
+		element = $('.item-promotion:nth-child(' + (i+1) + ')');
+		
+		if($(element).css('display') != "none"){
+			nbritems++;
+			if ($(element).find('.checked').length > 0){
+				selected++;
+			}
+		}
+	}
+	
+	//console.log(selected + ' item selected / ' + nbritems);
 	if (nbritems == selected && nbritems > 0){
 		output = true;
 	}
@@ -295,15 +330,28 @@ function makeList(){
 	
 	//Envoyer la liste des promotions selectionnées
 	
-	/*var sendData = function() {
-		$.post('exe/select.php', {
+	/* Test console */
+	
+	$('#clear').click(function(){
+		$('#console').text('');
+	});
+	
+	/* Test console */
+	
+	
+	
+	var sendData = function() {
+		$.post('product/exe/select.php?file=' + getAllUrlParams().file, {
+		//$.post('test.php', {
 		data: sendtab
 		}, function(response) {
+			console.log('Output :');
 			console.log(response);
+			//$('#console').text(response);
 			
 		});
 	}
-	sendData();*/
+	sendData();
 }
 
 function switchView(){
@@ -413,4 +461,66 @@ function changeBackground(event){
 function findAncestorByClasses (el, cls1, cls2) {
     while ((el = el.parentElement) && (!el.classList.contains(cls1) && !el.classList.contains(cls2)));
     return el;
+}
+
+function getAllUrlParams(url) {
+
+  // get query string from url (optional) or window
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+  // we'll store the parameters here
+  var obj = {};
+
+  // if query string exists
+  if (queryString) {
+
+    // stuff after # is not part of query string, so get rid of it
+    queryString = queryString.split('#')[0];
+
+    // split our query string into its component parts
+    var arr = queryString.split('&');
+
+    for (var i=0; i<arr.length; i++) {
+      // separate the keys and the values
+      var a = arr[i].split('=');
+
+      // in case params look like: list[]=thing1&list[]=thing2
+      var paramNum = undefined;
+      var paramName = a[0].replace(/\[\d*\]/, function(v) {
+        paramNum = v.slice(1,-1);
+        return '';
+      });
+
+      // set parameter value (use 'true' if empty)
+      var paramValue = typeof(a[1])==='undefined' ? true : a[1];
+
+      // (optional) keep case consistent
+      paramName = paramName.toLowerCase();
+      paramValue = paramValue.toLowerCase();
+
+      // if parameter name already exists
+      if (obj[paramName]) {
+        // convert value to array (if still string)
+        if (typeof obj[paramName] === 'string') {
+          obj[paramName] = [obj[paramName]];
+        }
+        // if no array index number specified...
+        if (typeof paramNum === 'undefined') {
+          // put the value on the end of the array
+          obj[paramName].push(paramValue);
+        }
+        // if array index number specified...
+        else {
+          // put the value at that index number
+          obj[paramName][paramNum] = paramValue;
+        }
+      }
+      // if param name doesn't exist yet, set it
+      else {
+        obj[paramName] = paramValue;
+      }
+    }
+  }
+
+  return obj;
 }

@@ -8,6 +8,7 @@
 	$exist = false;
 
 	if (empty($_GET['file'])){$error = true;}
+	if ($_GET['file'] == ""){$error = true;}
 	if (file_exists('product/exe/temp/' . $_GET['file'])){$exist = true;}
 ?>
 
@@ -41,6 +42,7 @@
 				</div>
 				<div class="nav-item">
 					<div class="inner-button">
+					
 						<?php
 						$buttonnav = new Button('IMPORTER', true);
 						$buttonnav->setID('button_choose');
@@ -58,10 +60,20 @@
 		<main class="block-center">
 			<div class="inner">
 				<div class="inner-button">
+				<a class="button default" target="help.php" href="help.php">
+						<span>
+							BESOIN D'AIDE ?
+						</span>
+					</a>
+				</div>
+			
+				<div class="inner-button">
+				
 					<?php
 						if (!$error && $exist){
 							$buttonnav = new Button('TÉlÉCHARGER', true);
 							$buttonnav->setLink('');
+							$buttonnav->addClass('dl');
 							echo($buttonnav->getOutput());
 						}
 
@@ -118,9 +130,6 @@
 			<div class="inner-button">
 					<?php
 						if (!$error && $exist){
-							$buttonnav = new Button('TÉlÉCHARGER', true);
-							$buttonnav->setLink('');
-							$buttonnav->setID('download');
 							echo($buttonnav->getOutput());
 						}
 
@@ -157,5 +166,12 @@
 		</script>
 	<script type="text/javascript" src="script.js"></script>
 	
+	
+	
+	
+	<div style="display: none; position: fixed; bottom: 0;height: 500px;background-color: white;width: 300px;right: 0; overflow: scroll;">
+		<button id="clear" style=" right: 0; position: absolute;">Clear</button>
+		<p id="console"></p>
+	</div>
 </body>
 </html>

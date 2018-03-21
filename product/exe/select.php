@@ -1,174 +1,122 @@
 <?php
 
-include('../res/includes/student.php');
-include('function.php');
-include('../res/includes/absentialist.php');
+include_once('../res/includes/student.php');
+include_once('function.php');
+include_once('../res/includes/absentialist.php');
 
-echo('select.php						--');
+print_r($_POST);
+print_r($_GET);
 
-if(isset($_POST)){
-	if(isset($_POST['data'])){
-		$promoselect = $_POST['data'];
-		$namefile = 'class.csv';
-		$absentialist = array();
-		
-		for ($i = 0; $i < sizeof($promoselect); $i++){
-			//Décoder les caractères sépciaux
-			$promoselect[$i] = html_entity_decode($promoselect[$i]);
-			//Créer une Absentia List par promotion sélectionnée
-			$absentialist[$i] = new AbsentiaList($promoselect[$i], array());
-		}
-		
-		//print_r($promoselect);
-		
-		//File
-		
-		$file = fopen('temp/' . $namefile, 'r');
-		$text = array();
-		fgets($file);
+//Fichier à traiter dans /temp
+$currentFile = $_GET['file'];
+//Promotions selectionnées
+$selectedPromotions = $_POST['data'];
+//Les Absentia List (output)
+$AbsentiaList = [];
 
-		//Décoder les caractères speciaux
-		while (!feof($file)){
-			$lines[] = html_entity_decode(utf8_encode(fgets($file)));
-		}
 
-		$student = array();
-		$temp = array();
-
-		//Créer les objects Students
-		for($i=0;$i<sizeof($lines);$i++){
-			$temp = (explode(';', $lines[$i])); 
-			if (!empty($temp[1])){
-				$students[] = new Student($temp[0], $temp[1], $temp[2], $temp[3], $temp[4], $temp[5], $temp[6], $temp[7], $temp[8], $temp[9]);
-			}
-		}
-		
-		//print_r($students);
-		
-		
-		
-		
-		//Création des Absentia List
-		
-		$temp = array();
-		
-		//Pour chaque student
-		for($i=0;$i<sizeof($students);$i++){
-			$current_student = $students[$i];
-			
-			//Ajouter les étudiants dans les Absentia List
-			for($i1=0;$i1<sizeof($promoselect);$i1++){
-				
-				//Si correspondent à la selection
-				if($current_student->_class == $promoselect[$i1]){
-					$current_list = $absentialist[$i1];
-					
-					//echo('		List ' . $current_list->_id . ' student ' . $current_student->_name);
-					$current_list->addStudent($current_student);
-				}
-			}
-		} 
-		
-		echo('	/	AbsentiaList = ');
-		print_r($absentialist);
-	}
+//Pour chaque promotion
+for ($i = 0; $i < sizeof($selectedPromotions); $i++){
+	//Décoder les caractères speciaux
+	$selectedPromotions[$i] = html_entity_decode($selectedPromotions[$i]);
+	//Créer une absentia list avec une liste d'étudiant vide
+	$AbsentiaList[$i] = new AbsentiaList($selectedPromotions[$i], array());
 }
 
 
+//Préparation à la lecture du fichier
+$lines = [];
+$file = fopen('temp/' . $currentFile, 'r');
+$text = array();
+
+//Détection de l'header du fichier
+//Si le fichier excel a un header
+//fgets($file);
 
 
-
-
-
-
-
-
-
-
-
-//File
-/*		$file = fopen('temp/' . $namefile, 'r');
-		$text = array();
-		
-		
-		echo('	/ 	First line file = ' . fgets($file));
-
-		while (!feof($file)){
-			$lines[] = html_entity_decode(utf8_encode(fgets($file)));
-		}
-		
-		$temp = array();
-
-		for($i=0;$i<sizeof($lines);$i++){
-			$temp = (explode(';', $lines[$i]));
-			print_r($temp);
-			if (!empty($temp[1])){
-				if ($temp[1] == $promoselect[0]){
-					//Convertir en object
-					$students[] = new Student($temp[0], $temp[1], $temp[2], $temp[3], $temp[4], $temp[5], $temp[6], $temp[7], $temp[8], $temp[9]);
-				}
-			}	
-		}
-		
-		$absentialist[] = new AbsentiaList($promoselect[0], $students);
-		
-		echo('	/	Students = ');
-		print_r($students);
-		
-		echo('	/	AbsentiaList = ');
-		print_r($absentialist);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$student1 = new Student('ADES Thomas', '@ MBA2 - Alternant', 'Le 31/05 de 13h00 à 18h00', '5h00', '2', '', 'Injustifiée', 'Aucun', 'Aucun','Non');
-//echo($student1->getOutput());
-//print_r($student1->getArrayOutput());
-
-/*
-
-//Récuperer les élèves des promotions sélectionner
-		for ($i = 0; $i < sizeof($listselected); $i++){
-			$result = array();
+//Pour chaque ligne du fichier
+while (!feof($file)){
+	//Décoder les lignes
+	$entry = html_entity_decode(utf8_encode(fgets($file)));
+	$lines[] = $entry;
+	//Décomposer la chaine
+	$read = explode(';', $entry);
+	
+	//Si le tableau de lecture de line est vide, la ligne est bugée ou vide
+	if(!sizeof($read) == 0 && !empty($read[1])){
+		//Récuperer la promotion de l'eleve (index 2)
+		if(isset($read[1]) && !empty($read[1])){$promo = $read[1];}
+		//Si la promotion de l'eleve est presente dans les promotions selectionné
+		if(exist_in_tab($promo, $selectedPromotions)){
 			
-			$students = array();
-			//Changer l'encodage
-			$listselected[$i] = htmlspecialchars_decode($listselected[$i]);
+			//Si read[2] existe (qui correspondrai aux nombre d'heures cours manquées), l'intégrer dans le new Student
+			$h_missed = "";
+			if(isset($read[2]) && !empty($read[2])){$h_missed = $read[2];}
 			
-			
-			$result = getOnlyPromos('class.csv', $listselected[$i]);
-			//Result = les étudiants correspondant à une promotions
-			echo('Length students for ' . $listselected[$i] . ' : ' . sizeof($result));
-			
-			for ($i1 = 0; $i1 < sizeof($result); $i1++){
-				$currentstudent = $result[$i1];
-				
-				if ($listselected[$i] == $currentstudent[1]){
-					echo('				Name = ' . $currentstudent[0] . '				');
-					$students[] = new Student($currentstudent[0], $currentstudent[1], $currentstudent[2], $currentstudent[3], $currentstudent[4], $currentstudent[5], $currentstudent[6], $currentstudent[7], $currentstudent[8], $currentstudent[9]);
+			//Creer l'object student
+			//						Name	class	  date	hours	lessons	attach	motive	Sletter	Ssms justify
+			$student = new Student($read[0], $read[1], '', $h_missed);
+
+			//Récuperer l'Absentia List qui a le label similaire à la promotion de l'eleve
+			$hispromo = $read[1];
+			for($i = 0; $i < sizeof($AbsentiaList); $i++){
+				//Si la classe de l'Absentia List est le même que celle de l'élève
+				if($AbsentiaList[$i]->_class == $hispromo){
+					//Ajouter l'objet dans la liste trouvée (et le merge)
+					$AbsentiaList[$i]->addStudent($student);
 				}
 			}
-			
-			
-			//absentialist = les listes récapitulative Absentia
-			$absentialist[] = new AbsentiaList($listselected[$i], $students);
-			
-			echo('-------------------------------Absentia ' . $listselected[$i]);
-			print_r($absentialist);
 		}
+	}	
+}
 
-*/
+//Suivi
+echo('Absentia Lists :<br>');
+print_r($AbsentiaList);
+
+
+
+//PDF
+
+include('../../pdf.php');
+
+if(sizeof($AbsentiaList) < 4){
+	for($i = 0; $i < sizeof($AbsentiaList); $i++){
+		downloadAbsentiaPDF($AbsentiaList[$i]);
+	}
+} else {
+	dowloadAbsentiaZIP($AbsentiaList);
+}
+
+
+//PDF
+
+
+
+
+
+//Pour chaque promotion
+	//Décoder le label de la promotion
+
+	//Créer une absentia list avec une liste d'étudiant vide
+//	
+
+//Préparation à la lecture du fichier
+
+//Pour chaque ligne du fichier
+	//Décoder la ligne
+	//Récuperer la promotion de l'eleve (index 2)
+
+	//Si la promotion de l'eleve est presente dans les promotions selectionné
+		//Creer l'object student
+		//Récuperer l'Absentia List qui a le label similaire à la promotion de l'eleve
+		//Ajouter l'objet dans la liste trouvée (et le merge)
+	//
+//
+
+
+
+
+
 
 ?>

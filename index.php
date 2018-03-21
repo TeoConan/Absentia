@@ -60,9 +60,10 @@
 			?>
 			</div>
 			
+			<!--<form action="upload.php" method="post" enctype="multipart/form-data">-->
 			<form action="upload.php" method="post" enctype="multipart/form-data">
 			
-				<input type="file" accept=".csv" name="fileToUpload" id="fileToUpload" style="display: none;">
+				<input type="file" accept=".csv" name="fileToUpload[]" id="fileToUpload" multiple style="display: none;">
 				<input type="submit" value="Upload Image" name="submit" id="submit"  style="display: none;">
 			</form>
 
