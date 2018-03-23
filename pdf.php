@@ -15,38 +15,49 @@ if(!empty($_GET['action'])){
 	if($_GET['action'] == "pdf"){
 		testpdf();
 	}
+	
+	if($_GET['action'] == "print"){
+		//buildAbsentiaHTML();
+	}
 }
 
 
-function downloadAbsentiaPDF($absentia, $for='pdf'){
+function downloadAbsentiaPDF($absentia, $for='pdf', $dl = true){
 	
 	//Traitement du nom du fichier
-	
 	$filename = clearName($absentia);
-
+	$path = (getPDFPath() . $filename . '.pdf');
 	$html = buildAbsentiaHTML($absentia);
+	//echo($html);
 	
+	//Construction du pdf
 	$dompdf = new Dompdf();
 	$dompdf->loadHtml($html);
-	//$dompdf->setPaper('A4', 'portrait');
-	// Render the HTML as PDF
+	$dompdf->setBasePath('construct_pdf/');
+	$dompdf->setPaper('A4', 'portrait');
 	$dompdf->render();
-
-	// Output the generated PDF to Browser
-	//$dompdf->stream($filename);
 	
+	//Error case
+	$f;
+	$l;
+	if(headers_sent($f,$l))
+	{
+		echo $f,'<br/>',$l,'<br/>';
+		die('now detect line');
+	}
+	
+	//Sortie du pdf
 	$output = $dompdf->output();
-		$path = (getPDFPath() . $filename . '.pdf');
+	$path = (getPDFPath() . $filename . '.pdf');
 	if($for == 'pdf'){
 		
 	} else if ($for == 'zip'){
 		$path = (getZIPPath() . $filename . '.pdf');
 	}
-	
-		
-	
+
+	//Ecriture du fichier
     file_put_contents($path, $output);
-	downloadFile($path);
+	if($dl){downloadFile($path);}
 	return($filename . '.pdf');
 }
 
@@ -137,7 +148,7 @@ function clearName($ab){
 		return($name);
 	}
 
-function buildAbsentiaHTML($absentia){
+function oldbuildAbsentiaHTML($absentia){
 	$css = '
 	@charset "utf-8";
 	/* CSS Document */
@@ -348,43 +359,186 @@ function testpdf(){
 
 	$students = Array();
 
-	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Lauera Blondeau', 'MDS B1', '', 158, 1));
+	array_push($students ,new Student('Laugrra Blondeau', 'MDS B1', '', 1588, 1));
+	array_push($students ,new Student('Laurgra Bloretrgendeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura Blrgegeondeau', 'MDS B1', '', 1857, 1));
+	array_push($students ,new Student('Largergeura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura grBlondeau', 'MDS B1', '', 128, 1));
+	array_push($students ,new Student('Laurggea Blondeau', 'MDS B1', '', 148, 1));
+	array_push($students ,new Student('Laura greBlondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Lauragg Blondeau', 'MDS B1', '', 18, 1));
 
 
 
 	$absentiaList = new AbsentiaList('MDS B1', $students);
 	
-	$html = buildTest();
+	$html = buildAbsentiaHTML($absentiaList);
+	//echo($html);
 	
 	$dompdf = new Dompdf();
 	$dompdf->loadHtml($html);
 	$dompdf->setBasePath('product/exe/construct_pdf/');
 	$dompdf->setPaper('A4', 'portrait');
-	// Render the HTML as PDF
 	$dompdf->render();
-
-	// Output the generated PDF to Browser
+	
+	$f;
+	$l;
+	if(headers_sent($f,$l))
+	{
+		echo $f,'<br/>',$l,'<br/>';
+		die('now detect line');
+	}
 	$dompdf->stream('test.pdf');
 }
 
-function buildTest(){
+function buildAbsentiaHTML($AbsentiaList){
+	$outputhtml = "";
+	//$css = file_get_contents("product/exe/construct_pdf/css.html");
 	
-	return(file_get_contents("product/exe/construct_pdf/table.html"));
+	$dynamictable = "";
+	
+	$tabstudent = $AbsentiaList->_students;
+	for($i = 0; $i < sizeof($tabstudent); $i++){
+		$current = $tabstudent[$i];
+		$alert = "";
+		
+		if($current->_hours_missed >= 10 && $current->_hours_missed < 30){
+			$alert = ('Entretien RP');
+		}else 
+			if($current->_hours_missed >= 30 && $current->_hours_missed < 50){
+			$alert = ('Conseil');
+		}else 
+			if($current->_hours_missed >= 50 && $current->_hours_missed < 60){
+			$alert = ('Exclusion à 60h');
+		}else 
+			if($current->_hours_missed >= 60){
+			$alert = ('Exclusion');
+		}else{
+			$alert = ('');
+		}
+		
+		
+		$dynamictable .= '
+					<tr>
+					   <td>' . $current->_name . '</td>
+						<td>' . $current->_hours_missed . '</td>
+					   <td>' . $alert . '</td>
+				   </tr>
+		';
+	}
+	
+	$outputhtml = '
+	
+	<!doctype html>
+	<html>
+
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="tablee.css" />
+	
+		<style>
+		img {
+			height: 1.5cm;
+		}
+		
+		td, p {
+			font-family: Helvetica;
+		}
+		
+		thead > tr > td {
+			padding-bottom: 0.25cm;
+			padding-top: 0.25cm;
+			color: white;
+		}
+		h2 {
+			font-family: Helvetica;
+			font-weight: 400;
+			font-size: 22px;
+		}
+		
+		td {
+			text-align: center;
+			margin-top: 0.5cm;
+			margin-bottom: 0.5cm;
+			padding-top: 0.5cm;
+			padding-bottom: 0.5cm;
+		}
+		
+		table tbody tr > td:first-child {
+			text-align: left;
+			padding-left: 0.25cm;
+		}
+		
+		table tbody tr:nth-child(2n) {
+			background-color: #e0e0e0;
+		}
+		
+		table, thead, tr {
+			width: 19cm;
+		}
+		
+		
+		
+		table {
+			border:none;
+			border-collapse: collapse;
+		}
+
+		table td {
+		}
+
+		table td:first-child {
+			border-left: none;
+		}
+
+		table td:last-child {
+			border-right: none;
+		}
+	</style>
+	<title>Absentia - Table</title>
+	<link rel="icon" type="image/png" href="logo.ico" />
+</head>
+
+<body>
+	<div class="inner" style="position: relative;">
+		<div class="block-header" style="display: flex; position: relative;">
+			<div class="absentia" style="position: absolute; left: 0; top 0; height: auto;">
+				<img src="absentia.png">
+			</div>
+			<div class="espl" style="display: inline-block; position: absolute; left: 6.75cm; top 0;">
+				<img src="espl_campus_dark.png">
+			</div>
+			<div class="date" style="position: absolute; left: 17cm;">
+				<p>' . $AbsentiaList->_date . '</p>
+			</div>
+		</div>
+		<div class="class" style="padding-top: 2cm;">
+			<div class="promotion">
+				<h2>Promotion : <span style="margin-left: 1cm">' . $AbsentiaList->_class . '</span></h2>
+			</div>
+		</div>
+		<div class="table" style="display: block; border-collapse: collapse;">
+			<table>
+			   <thead style="text-align:center; border: 1px solid black; background-color: #db1820;"> <!-- En-tête du tableau -->
+				   <tr>
+					   <td>Étudiant</td>
+						<td>Heures manquées</td>
+					   <td>Alerte</td>
+				   </tr>
+			   </thead>
+
+			   <tbody> <!-- Corps du tableau -->
+				   ' . $dynamictable . '
+			   </tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>';
+		
+	return($outputhtml);
 }
 
-
-
-//downloadAbsentiaPDF($absentiaList);
-
 ?>
-
-
-<img src="product/exe/construct_pdf/table.html"
