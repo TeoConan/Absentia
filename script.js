@@ -338,6 +338,8 @@ function makeList(){
 	
 	/* Test console */
 	
+	//Regex redirection
+	var regRedirect = "\[REDIRECT\]\w*\[REDIRECT\]";
 	
 	
 	var sendData = function() {
@@ -345,13 +347,65 @@ function makeList(){
 		//$.post('test.php', {
 		data: sendtab
 		}, function(response) {
+			var redirect = getAbsentiaPath() + '/product/exe/' + findRedirect(response);
+			var redirect = findRedirect(response);
+			
+			
 			console.log('Output :');
 			console.log(response);
 			//$('#console').text(response);
 			
+			console.log('Redirect to ' + redirect);
+			console.log('End');
+			
+			setTimeout(function(){
+				
+				for(var i = 0;i < redirect.length;i++){
+					window.open(getAbsentiaPath() + '/product/exe/' + redirect[i], "_blank");
+				}
+				
+				console.log('Test');
+			}, 200);
 		});
 	}
 	sendData();
+}
+
+function redirectURLBlank(url){
+	window.open("https://www.w3schools.com", "_blank");
+}
+
+function getAbsentiaPath(){
+	var currentURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+	var res = currentURL.lastIndexOf("/");
+	var urlroot = currentURL.substring(0, res);
+	
+	return(urlroot);
+}
+
+function findRedirect(text){
+	var output;
+	var reg = text.match(/\[REDIRECT\](.+)\[REDIRECT\]/g);
+	if(reg != null){
+		console.log('Redirects : ');
+		console.log(reg[0]);
+		output = reg[0].replace("[REDIRECT]", "");
+		output = output.replace("[REDIRECT]", "");
+		output = output.split("[REDIRECT]");
+	}
+	
+	
+	var redirects = [];
+	for(var i = 0;i < output.length;i++){
+		if(output[i] != "" && output[i] != null){
+			redirects.push(output[i]);
+		}
+	}
+	
+	console.log('Redirections final');
+	console.log(redirects);
+	
+	return(redirects);
 }
 
 function switchView(){

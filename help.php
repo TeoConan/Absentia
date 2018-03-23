@@ -38,15 +38,35 @@
 				</a>
 			</div>
 			<div class="nav-item">
+				
 				<div class="inner-button">
-					<?php
-					$buttonnav = new Button('ACCUEIL', true);
-					$buttonnav->setLink('index.php');
+				<?php
+					$buttonnav = new Button('IMPORTER', true);
+					$buttonnav->setID('button_choose');
 					echo($buttonnav->getOutput());
-					?>
-
-
+				?>
 				</div>
+
+				<!--<form action="upload.php" method="post" enctype="multipart/form-data">-->
+				<form action="upload.php" method="post" enctype="multipart/form-data">
+
+					<input type="file" accept=".csv" name="fileToUpload[]" id="fileToUpload" multiple style="display: none;">
+					<input type="submit" value="Upload Image" name="submit" id="submit"  style="display: none;">
+				</form>
+				
+				<script type="text/javascript">
+					var button_choose = document.getElementById('button_choose');
+					var fileChooser = document.getElementById('fileToUpload');
+					var submiter = document.getElementById('submit');
+
+					fileChooser.addEventListener('change', function(){
+						submiter.click();
+					}, false);
+
+					button_choose.addEventListener('click', function(){
+						fileChooser.click();
+					}, false);
+				</script>
 
 			</div>
 

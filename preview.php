@@ -45,13 +45,19 @@
 				</div>
 				<div class="nav-item">
 					<div class="inner-button">
-					
 						<?php
 						$buttonnav = new Button('IMPORTER', true);
 						$buttonnav->setID('button_choose');
 						echo($buttonnav->getOutput());
-						?>
+					?>
 					</div>
+
+					<!--<form action="upload.php" method="post" enctype="multipart/form-data">-->
+					<form action="upload.php" method="post" enctype="multipart/form-data">
+
+						<input type="file" accept=".csv" name="fileToUpload[]" id="fileToUpload" multiple style="display: none;">
+						<input type="submit" value="Upload Image" name="submit" id="submit"  style="display: none;">
+					</form>
 					
 				</div>
 
@@ -138,6 +144,10 @@
 
 					?>
 				</div>
+				
+			<div>
+				<a id="redirect" style="display: none;" target="_blank" href="">Télécharger</a>
+			</div>
 		</div>
 	</main>	
 	<footer class="block-footer">
@@ -149,11 +159,6 @@
 			
 		</div>
 	</footer>
-	
-	<form action="upload.php" method="post" enctype="multipart/form-data">
-		<input type="file" accept=".csv" name="fileToUpload" id="fileToUpload" style="display: none;">
-		<input type="submit" value="Upload Image" name="submit" id="submit"  style="display: none;">
-	</form>
 	
 	<script type="text/javascript">
 			var button_choose = document.getElementById('button_choose');
@@ -174,6 +179,8 @@
 		<button id="clear" style=" right: 0; position: absolute;">Clear</button>
 		<p id="console"></p>
 	</div>
+	
+	
 </body>
 
 	

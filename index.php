@@ -52,7 +52,7 @@
 
 		<main class="block-center">
 			<h1 class="title">IMPORTER</h1>
-			<h2 class="titlef">Fiches absences</h2>
+			<h2 class="titlef">Tableau(x) d'absences de l'Hyperplanning</h2>
 			<div class="inner-button">
 				<?php
 				$buttonnav = new Button('IMPORTER', true);

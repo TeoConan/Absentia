@@ -32,7 +32,7 @@ class Student
 		
 		$this->_class = $class;
 		$this->_date = $strdate;
-		$this->_hours_missed = $missed_hours;
+		$this->_hours_missed = preg_replace( "/\r|\n/", "", $missed_hours);;
 		$this->_lesson_missed = $missed_lesson;
 		$this->_attachement = $attachement;
 		$this->_motive = $motive;

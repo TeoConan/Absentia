@@ -10,12 +10,20 @@ Dompdf\Autoloader::register();
 // reference the Dompdf namespace
 use Dompdf\Dompdf;
 
-function downloadAbsentiaPDF($absentia){
+
+if(!empty($_GET['action'])){
+	if($_GET['action'] == "pdf"){
+		testpdf();
+	}
+}
+
+
+function downloadAbsentiaPDF($absentia, $for='pdf'){
 	
 	//Traitement du nom du fichier
 	
-	$filename = str_replace(' ', '_', $absentia->_class);
-	$filename = strtolower($filename);
+	$filename = clearName($absentia);
+
 	$html = buildAbsentiaHTML($absentia);
 	
 	$dompdf = new Dompdf();
@@ -28,13 +36,106 @@ function downloadAbsentiaPDF($absentia){
 	//$dompdf->stream($filename);
 	
 	$output = $dompdf->output();
-    file_put_contents('pdf/' . $filename . '.pdf', $output);
-
+		$path = (getPDFPath() . $filename . '.pdf');
+	if($for == 'pdf'){
+		
+	} else if ($for == 'zip'){
+		$path = (getZIPPath() . $filename . '.pdf');
+	}
+	
+		
+	
+    file_put_contents($path, $output);
+	downloadFile($path);
+	return($filename . '.pdf');
 }
 
 function dowloadAbsentiaZIP($absentias){
+	$outputs = Array();
+	$date = getdate();
 	
+	for($i = 0; $i < sizeof($absentias);$i++){
+		$outputs[$i] = downloadAbsentiaPDF($absentias[$i]);
+	}
+	
+	//Create zip
+	$zip = new ZipArchive();
+	$filename = getZIPPath() . 'AbsentiaList_' . $date['mon'] . '-' . $date['year'] . '_' . uniqid() . '.zip';
+
+	if($zip->open($filename, ZipArchive::CREATE) === true){
+		echo 'Fichier ' . $filename . ' créé	//';
+
+		// Ajout des fichier.
+		for($i = 0; $i < sizeof($absentias);$i++){
+			$outputs[$i] = downloadAbsentiaPDF($absentias[$i]);
+			$zip->addFile(getPDFPath() . $outputs[$i], $outputs[$i]);
+		}
+
+		// Et on referme l’archive.
+		$zip->close();
+		
+		//Delete
+		echo('<br>Ready to delete<br/>');
+		print_r($outputs);
+		
+		for($i = 0; $i < sizeof($absentias);$i++){
+			try {
+				unlink(getPDFPath() . $outputs[$i]);
+			} catch(Exception $e){
+				
+			}
+			
+			
+			if(file_exists(getPDFPath() . $outputs[$i])){
+				echo('<br>File ' . getPDFPath() . $outputs[$i] . ' always exist');
+			}
+		}
+		
+		echo('<br>	Download ' . $filename . '	');
+		downloadFile($filename);
+		
+	} else {
+		echo 'Error ZIP : ' . $filename;
+		// Traitement des erreurs avec un switch(), par exemple.
+	}
+
 }
+
+function getPDFRootPath(){
+	return('product/exe/pdf');
+}
+
+function getPDFPath(){
+	return('pdf/');
+}
+
+function getZIPPath(){
+	return('zip/');
+}
+
+function clearName($ab){
+		$name = strtolower($ab->_class);
+		
+		
+		if(strlen($name) > 21){
+			$words = explode(' ', $name);
+			$date = $ab->_date;
+			$date_n = explode('/', $date);
+			
+			
+			$name = ($words[0] . '_' . $words[1] . '[...]' . $words[sizeof($words)-1] . '_' . $date_n[1] . '-' . $date_n[2]);
+			
+			if (file_exists(getPDFPath() . $name . '.pdf')){
+				
+			}
+		} else {
+			$name = str_replace(' ', '_', $name);
+			$name = strtolower($name);
+		}
+			
+		
+		return($name);
+	}
 
 function buildAbsentiaHTML($absentia){
 	$css = '
@@ -226,25 +327,64 @@ function buildAbsentiaHTML($absentia){
 	return($defaulthtml);
 }
 
-include_once('product/res/includes/absentialist.php');
-include_once('product/res/includes/student.php');
+function downloadFile($File){
+	//echo('<br>Force download : name ' . basename($File));
+	
+	//header('Content-Type: application/octet-stream');
+	//header('Content-Disposition: attachment; filename=' . basename($File));
+	//readfile($File);
+	
+	//header('Location: ' . $File);
+	//echo('<br exit ' . $File);
+	
+	echo('[REDIRECT]' . $File . '[REDIRECT]');
+	
+	//exit;
+}
 
-$students = Array();
+function testpdf(){
+	include_once('product/res/includes/absentialist.php');
+	include_once('product/res/includes/student.php');
 
-array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
-array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	$students = Array();
+
+	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
+	array_push($students ,new Student('Laura Blondeau', 'MDS B1', '', 18, 1));
 
 
 
-$absentiaList = new AbsentiaList('MDS B1', $students);
+	$absentiaList = new AbsentiaList('MDS B1', $students);
+	
+	$html = buildTest();
+	
+	$dompdf = new Dompdf();
+	$dompdf->loadHtml($html);
+	$dompdf->setBasePath('product/exe/construct_pdf/');
+	$dompdf->setPaper('A4', 'portrait');
+	// Render the HTML as PDF
+	$dompdf->render();
+
+	// Output the generated PDF to Browser
+	$dompdf->stream('test.pdf');
+}
+
+function buildTest(){
+	
+	return(file_get_contents("product/exe/construct_pdf/table.html"));
+}
+
+
 
 //downloadAbsentiaPDF($absentiaList);
 
 ?>
+
+
+<img src="product/exe/construct_pdf/table.html"

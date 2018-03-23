@@ -39,13 +39,15 @@ $absentiaList = new AbsentiaList('TRANSPORT ET PRESTATION LOGISTIQUE 1° ANNEE A
 	
 	function clearName($ab){
 		$name = $ab->_class;
-		$date = $ab->_date;
+		
 		
 		if(strlen($name) > 21){
 			$words = explode(' ', $name);
+			$date = $ab->_date;
+			$date_n = explode('/', $date);
 			print_r($words);
 			
-			$name = ($words[0] . '_' . $words[1] . '_' . $words[2] . '_' . $date);
+			$name = ($words[0] . '_' . $words[1] . '_' . $words[2] . '_' . $date_n[1] . $date_n[2]);
 		} else {
 			$name = str_replace(' ', '_', $name);
 			$name = strtolower($name);

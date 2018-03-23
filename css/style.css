@@ -1,4 +1,4 @@
-@charset "utf-8";
+.block-center h2@charset "utf-8";
 /* CSS Document */
 @font-face {
 	font-family: "Carlito";
@@ -152,7 +152,7 @@ body > .inner > .background {
 .block-center h2 {
 	color: white;
 	font-family : 'Carlito', sans-serif;
-	font-size: 30px;
+	font-size: 22px;
 	text-align: center;
 	margin: 0;
 	margin-bottom: 3rem;

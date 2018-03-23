@@ -72,7 +72,7 @@ while (!feof($file)){
 
 //Suivi
 echo('Absentia Lists :<br>');
-print_r($AbsentiaList);
+//print_r($AbsentiaList);
 
 
 

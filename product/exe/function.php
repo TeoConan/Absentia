@@ -1,5 +1,12 @@
 <?php
 
+if(!empty($_GET['action'])){
+	if($_GET['action'] == "clean"){
+		launchCleaning();
+	}
+}
+
+
 //Contruire le HTML d'un item promotion
 function buildPromoItem($promo, $responsable){
 	//$promo = iconv("UTF-8","ISO-8859-1//IGNORE",$promo);
@@ -52,6 +59,50 @@ function getPromos($namefile){
 
 	return($promos);
 }
+
+//Maintenance
+
+//Supprimer un document si vieux de 1 semaine (604 800sec)
+function delOldFile($file, $del = true){
+	$output = false;
+	
+	if ((time()-filectime($file)) > 604800){
+		if($del){
+			echo('<br>Del file ' . $file);
+			unlink($file);
+			$output = true;
+		}
+	} else {
+		echo('<br>Dont del file ' . $file);
+	}
+	
+	return($output);
+}
+
+function launchCleaning(){
+	
+	$dirs = Array(
+		"zip",
+		"pdf",
+		"merge",
+		"temp"
+	);
+
+	for($i = 0; $i < sizeof($dirs);$i++){
+		chmod($dirs[$i], 0777);
+		$files = scandir($dirs[$i]);
+		//array_splice($files, 1);
+		echo('<br>Dir ' . $dirs[$i] . '<br>');
+		var_dump($files);
+
+		for($i1 = 0; $i1 < sizeof($files);$i1++){
+			delOldFile($dirs[$i] . '/' . $files[$i1]);
+		}
+	}
+		
+}
+
+//Maintenance
 
 //Obtenir uniquement la promotion
 function getOnlyPromos($namefile, $promo){
