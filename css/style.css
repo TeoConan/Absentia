@@ -180,6 +180,7 @@ body > .inner > .background {
 }
 
 .block-footer .inner a, .block-footer .inner p {
+	
 	color: white;
 	text-decoration: none;
 	font-family: "calibri", sans-serif;
@@ -189,6 +190,31 @@ body > .inner > .background {
 
 /* BUTTON */
 	/* COMMUN */
+
+.toast {
+	border-radius: 120px;
+	background-color: rgba(33,33,33,0.9);
+	padding: 15px 20px;
+	display: inline-block;
+	transform: translate(-50%, -50%);
+	bottom: 6%;
+	left: 50%;
+	opacity: 0;
+	transition: all .5s ease-in-out;
+	z-index: 99999;
+	text-align: center;
+	font-family: 'Carlito', sans-serif;
+	position: fixed;
+}
+
+.toast p {
+	color: white;
+	margin: 0;
+}
+
+.toast p::selection {
+  background: transparent;
+}
 
 .button {
 	margin: auto;
@@ -283,13 +309,23 @@ body.page-preview > .inner {
 
 	/* MAIN */
 
-.page-preview .block-center .inner-button:first-child {
-	margin-bottom: 0px;
-}
-
 body.page-preview .block-center .inner-button {
 	margin: 70px auto;
 	z-index: 9;
+}
+
+body.page-preview .block-center .inner-button:first-child {
+	margin-bottom: 0;
+}
+
+body.page-preview .block-center .loader {
+	margin: 30px auto;
+	opacity: 0;
+	transition: opacity .5s ease-in-out;
+}
+
+body.page-preview .block-center .loader img {
+	height: 40px;
 }
 
 .page-preview .block-center > .inner {
@@ -417,6 +453,14 @@ body.page-preview .block-center .inner-button {
 	background-color: #1870c7;
 	border-radius: 120px;
 	transition: all .25s ease-in-out;
+}
+
+.item-promotion > .item:hover {
+	background-color: #1563b0;
+}
+
+.item-promotion > .item.checked:hover {
+	background-color: #38863b;
 }
 
 .item.promotion.checked {

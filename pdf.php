@@ -57,7 +57,7 @@ function downloadAbsentiaPDF($absentia, $for='pdf', $dl = true){
 
 	//Ecriture du fichier
     file_put_contents($path, $output);
-	if($dl){downloadFile($path);}
+	if($dl){downloadFile($path);/*echo('	//Download file ' . $path . '//		');*/}
 	return($filename . '.pdf');
 }
 
@@ -66,7 +66,7 @@ function dowloadAbsentiaZIP($absentias){
 	$date = getdate();
 	
 	for($i = 0; $i < sizeof($absentias);$i++){
-		$outputs[$i] = downloadAbsentiaPDF($absentias[$i]);
+		$outputs[$i] = downloadAbsentiaPDF($absentias[$i], 'zip', false);
 	}
 	
 	//Create zip
@@ -74,35 +74,35 @@ function dowloadAbsentiaZIP($absentias){
 	$filename = getZIPPath() . 'AbsentiaList_' . $date['mon'] . '-' . $date['year'] . '_' . uniqid() . '.zip';
 
 	if($zip->open($filename, ZipArchive::CREATE) === true){
-		echo 'Fichier ' . $filename . ' créé	//';
+		//echo 'Fichier ' . $filename . ' créé	//';
 
 		// Ajout des fichier.
 		for($i = 0; $i < sizeof($absentias);$i++){
-			$outputs[$i] = downloadAbsentiaPDF($absentias[$i]);
-			$zip->addFile(getPDFPath() . $outputs[$i], $outputs[$i]);
+			$outputs[$i] = downloadAbsentiaPDF($absentias[$i], 'zip', false);
+			$zip->addFile(getZIPPath() . $outputs[$i], $outputs[$i]);
 		}
 
 		// Et on referme l’archive.
 		$zip->close();
 		
 		//Delete
-		echo('<br>Ready to delete<br/>');
+		//echo('<br>Ready to delete<br/>');
 		print_r($outputs);
 		
 		for($i = 0; $i < sizeof($absentias);$i++){
 			try {
-				unlink(getPDFPath() . $outputs[$i]);
+				unlink(getZIPPath() . $outputs[$i]);
 			} catch(Exception $e){
 				
 			}
 			
 			
-			if(file_exists(getPDFPath() . $outputs[$i])){
-				echo('<br>File ' . getPDFPath() . $outputs[$i] . ' always exist');
+			if(file_exists(getZIPPath() . $outputs[$i])){
+				//echo('<br>File ' . getPDFPath() . $outputs[$i] . ' always exist');
 			}
 		}
 		
-		echo('<br>	Download ' . $filename . '	');
+		//echo('<br>	Download ' . $filename . '	');
 		downloadFile($filename);
 		
 	} else {
@@ -348,7 +348,7 @@ function downloadFile($File){
 	//header('Location: ' . $File);
 	//echo('<br exit ' . $File);
 	
-	echo('[REDIRECT]' . $File . '[REDIRECT]');
+	echo('<redirect>' . $File . '</redirect>');
 	
 	//exit;
 }
@@ -436,6 +436,7 @@ function buildAbsentiaHTML($AbsentiaList){
 	<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" type="image/png" href="logo.ico" />
 	<link rel="stylesheet" href="tablee.css" />
 	
 		<style>
@@ -497,7 +498,7 @@ function buildAbsentiaHTML($AbsentiaList){
 			border-right: none;
 		}
 	</style>
-	<title>Absentia - Table</title>
+	<title>Absentia - ' . $AbsentiaList->_class . '</title>
 	<link rel="icon" type="image/png" href="logo.ico" />
 </head>
 

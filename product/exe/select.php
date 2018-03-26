@@ -4,8 +4,9 @@ include_once('../res/includes/student.php');
 include_once('function.php');
 include_once('../res/includes/absentialist.php');
 
-print_r($_POST);
-print_r($_GET);
+set_time_limit(3600);
+//print_r($_POST);
+//print_r($_GET);
 
 //Fichier à traiter dans /temp
 $currentFile = $_GET['file'];
@@ -71,7 +72,7 @@ while (!feof($file)){
 }
 
 //Suivi
-echo('Absentia Lists :<br>');
+//echo('Absentia Lists :<br>');
 //print_r($AbsentiaList);
 
 
@@ -80,7 +81,7 @@ echo('Absentia Lists :<br>');
 
 include('../../pdf.php');
 
-if(sizeof($AbsentiaList) < 4){
+if(sizeof($AbsentiaList) < 2){
 	for($i = 0; $i < sizeof($AbsentiaList); $i++){
 		downloadAbsentiaPDF($AbsentiaList[$i]);
 	}

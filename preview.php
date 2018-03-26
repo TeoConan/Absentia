@@ -69,15 +69,15 @@
 		<main class="block-center">
 			<div class="inner">
 				<div class="inner-button">
-				<a class="button default" target="help.php" href="help.php">
+					<a class="button default" target="help.php" href="help.php">
 						<span>
 							BESOIN D'AIDE ?
 						</span>
 					</a>
 				</div>
-			
-				<div class="inner-button">
-				
+
+				<div class="inner-button" style="margin-bottom: 0;">
+
 					<?php
 						if (!$error && $exist){
 							$buttonnav = new Button('TÉlÉCHARGER', true);
@@ -88,6 +88,11 @@
 
 					?>
 				</div>
+
+				<div class="loader" id="loader">
+					<img src="img/loader.gif"/>
+				</div>
+					
 				<div class="block-list">
 					<div class="inner">
 						<div class="recherche">
@@ -180,7 +185,9 @@
 		<p id="console"></p>
 	</div>
 	
-	
+	<div class="toast">
+		<p></p>
+	</div>
 </body>
 
 	

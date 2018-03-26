@@ -1,147 +1,50 @@
-
-
-	
-	<!doctype html>
-	<html>
-
-	<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="tablee.css" />
-	
-		<style>
-		img {
-			height: 1.5cm;
-		}
-		
-		td, p {
-			font-family: Helvetica;
-		}
-		
-		thead > tr > td {
-			padding-bottom: 0.25cm;
-			padding-top: 0.25cm;
-			color: white;
-		}
-		h2 {
-			font-family: Helvetica;
-			font-weight: 400;
-			font-size: 22px;
-		}
-		
-		td {
-			text-align: center;
-			margin-top: 0.5cm;
-			margin-bottom: 0.5cm;
-			padding-top: 0.5cm;
-			padding-bottom: 0.5cm;
-		}
-		
-		table tbody tr > td:first-child {
-			text-align: left;
-			padding-left: 0.25cm;
-		}
-		
-		table tbody tr:nth-child(2n) {
-			background-color: #e0e0e0;
-		}
-		
-		table, thead, tr {
-			width: 19cm;
-		}
-		
-		
-		
-		table {
-			border:none;
-			border-collapse: collapse;
-		}
-
-		table td {
-		}
-
-		table td:first-child {
-			border-left: none;
-		}
-
-		table td:last-child {
-			border-right: none;
-		}
-	</style>
-	<title>Absentia - Table</title>
-	<link rel="icon" type="image/png" href="logo.ico" />
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Document sans nom</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="jquery.min.js"></script>
 </head>
 
-<body>
-	<div class="inner" style="position: relative;">
-		<div class="block-header" style="display: flex; position: relative;">
-			<div class="absentia" style="position: absolute; left: 0; top 0; height: auto;">
-				<img src="absentia.png">
-			</div>
-			<div class="espl" style="display: inline-block; position: absolute; left: 6.75cm; top 0;">
-				<img src="espl_campus_dark.png">
-			</div>
-			<div class="date" style="position: absolute; left: 17cm;">
-				<p>23/03/2018</p>
-			</div>
-		</div>
-		<div class="class" style="padding-top: 2cm;">
-			<div class="promotion">
-				<h2>Promotion : <span style="margin-left: 1cm">MDS B1</span></h2>
-			</div>
-		</div>
-		<div class="table" style="display: block; border-collapse: collapse;">
-			<table>
-			   <thead style="text-align:center; border: 1px solid black; background-color: #db1820;"> <!-- En-tête du tableau -->
-				   <tr>
-					   <td>Étudiant</td>
-						<td>Heures manqué</td>
-					   <td>Alerte</td>
-				   </tr>
-			   </thead>
+<body style="background-image: url(img/background.jpg)">
 
-			   <tbody> <!-- Corps du tableau -->
-				   
-			<tr>
-				<td>Laura Blondeau</td>
-				<td>18</td>
-				<td>1</td><td>Entretien RP</td></tr>
-			<tr>
-				<td>Laura Blondeau</td>
-				<td>18</td>
-				<td>1</td><td>Entretien RP</td></tr>
-			<tr>
-				<td>Laura Blondeau</td>
-				<td>18</td>
-				<td>1</td><td>Entretien RP</td></tr>
-			<tr>
-				<td>Laura Blondeau</td>
-				<td>18</td>
-				<td>1</td><td>Entretien RP</td></tr>
-			<tr>
-				<td>Laura Blondeau</td>
-				<td>18</td>
-				<td>1</td><td>Entretien RP</td></tr>
-			<tr>
-				<td>Laura Blondeau</td>
-				<td>18</td>
-				<td>1</td><td>Entretien RP</td></tr>
-			<tr>
-				<td>Laura Blondeau</td>
-				<td>18</td>
-				<td>1</td><td>Entretien RP</td></tr>
-			<tr>
-				<td>Laura Blondeau</td>
-				<td>18</td>
-				<td>1</td><td>Entretien RP</td></tr>
-			<tr>
-				<td>Laura Blondeau</td>
-				<td>18</td>
-				<td>1</td><td>Entretien RP</td></tr>
-			   </tbody>
-			</table>
-		</div>
+<h1>Test Toast</h1>
+
+<div class="toast">
+	<p></p>
+</div>
+
+<script type="text/javascript">
+	
+	function Toast(text){
+		this.text = text;
+		this.body = $(document.body);
+		this.toast = $('.toast');
+		this.p = $('.toast > p');
 		
-	</div>
+		console.log('Toast elem = ');
+		console.log(this.toast);
+		console.log(this.p);
+		
+		this.show = function(){
+			this.toast.css('opacity', '0');
+			this.p.html(this.text);
+			this.toast.css('display', 'inline-block');
+			this.toast.css('opacity', '1');
+			
+		}
+	}
+</script>
+
+<script type="text/javascript">
+	
+	toast = new Toast("Temps d'attente estimé à<br>22 secondes");
+	toast.show();
+</script>
+
+
+
+
 </body>
 </html>

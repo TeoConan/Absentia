@@ -14,6 +14,9 @@ var inputsearch = document.getElementById('input_search');
 //Select all
 var select_all = document.getElementById('select_all');
 
+//Loading
+var isgenerating = false;
+
 initPromp();
 
 //Test
@@ -50,11 +53,11 @@ function initPromp(event){
 	$(btdl).click(function(){
 		console.log('Dl');
 		if(!nothingSelect()){
-			toggleLoad($(btdl), 'TÉLÉCHARGER');
-			makeList();
-			setTimeout(function(){
+			if(!isgenerating){
+				isgenerating = true;
 				toggleLoad($(btdl), 'TÉLÉCHARGER');
-			}, 1000);
+				makeList();
+			}	
 		}
 		
 	});
@@ -291,6 +294,19 @@ function toggleLoad(element, txt){
 	
 }
 
+function switchText(element, txt1, txt2){
+	console.log('switchText');
+	
+	var text = $(element).find('span');
+	
+	if (text.html() == txt2){
+		text.html(txt1);
+	} else {
+		text.html(txt2);
+	}
+	
+}
+
 function makeList(){
 	console.log('Function makeList');
 	
@@ -328,6 +344,21 @@ function makeList(){
 	
 	console.log(sendtab);
 	
+	//Show Toast
+	
+	var waittime = 0;
+	if(i1 > 1){
+		waittime = (i1*5)+2;
+	} else {
+		waittime = i1*4;
+	}
+	
+	toast = new Toast("Génération des PDF en cours...<br/>Durée estimée à " + waittime + " secondes");
+	toast.show();
+	$('#loader').css('opacity', '1');
+	
+	
+	
 	//Envoyer la liste des promotions selectionnées
 	
 	/* Test console */
@@ -339,7 +370,8 @@ function makeList(){
 	/* Test console */
 	
 	//Regex redirection
-	var regRedirect = "\[REDIRECT\]\w*\[REDIRECT\]";
+	var regRedirect = "/<redirect>(.*?)<\/redirect>/g";
+	
 	
 	
 	var sendData = function() {
@@ -347,7 +379,7 @@ function makeList(){
 		//$.post('test.php', {
 		data: sendtab
 		}, function(response) {
-			var redirect = getAbsentiaPath() + '/product/exe/' + findRedirect(response);
+			//var redirect = getAbsentiaPath() + '/product/exe/' + findRedirect(response);
 			var redirect = findRedirect(response);
 			
 			
@@ -364,15 +396,15 @@ function makeList(){
 					window.open(getAbsentiaPath() + '/product/exe/' + redirect[i], "_blank");
 				}
 				
-				console.log('Test');
+				console.log('End redirect');
+				isgenerating = false;
+				toggleLoad($(btdl), 'TÉLÉCHARGER');
+				$('#loader').css('opacity', '0');
+				toast.hide();
 			}, 200);
 		});
 	}
 	sendData();
-}
-
-function redirectURLBlank(url){
-	window.open("https://www.w3schools.com", "_blank");
 }
 
 function getAbsentiaPath(){
@@ -385,27 +417,35 @@ function getAbsentiaPath(){
 
 function findRedirect(text){
 	var output;
-	var reg = text.match(/\[REDIRECT\](.+)\[REDIRECT\]/g);
+	var reg = text.match(/<redirect>(.*?)<\/redirect>/g);
+	console.log(text);
+	console.log(reg);
 	if(reg != null){
-		console.log('Redirects : ');
-		console.log(reg[0]);
-		output = reg[0].replace("[REDIRECT]", "");
-		output = output.replace("[REDIRECT]", "");
-		output = output.split("[REDIRECT]");
-	}
-	
-	
-	var redirects = [];
-	for(var i = 0;i < output.length;i++){
-		if(output[i] != "" && output[i] != null){
-			redirects.push(output[i]);
+		console.log('Redirects : size ' + reg.lenght);
+		
+		
+		var alllink = [];
+		var regwhile = reg.lenght;
+		if(regwhile == null){regwhile = 1;}
+		for(var i = 0; i < regwhile; i++){
+			output = reg[i];
+			output = output.replace("<redirect>", "");
+			output = output.replace("</redirect>", "");
+			console.log('Replace tag in ' + output);			
+			alllink.push(output);
 		}
+		
+		console.log(alllink);
+		
+		console.log("New <redirect>");
+		console.log(output);
 	}
+	
 	
 	console.log('Redirections final');
-	console.log(redirects);
+	console.log(alllink);
 	
-	return(redirects);
+	return(alllink);
 }
 
 function switchView(){
@@ -491,6 +531,27 @@ function changeIcon(event){
 		//console.log('Error = ' + e);
 	}
 }
+
+function Toast(text){
+		this.text = text;
+		this.body = $(document.body);
+		this.toast = $('.toast');
+		this.p = $('.toast > p');
+		this.me = this;
+		
+		console.log('Toast elem = ');
+		console.log(this.toast);
+		console.log(this.p);
+		
+		this.show = function(){
+			this.p.html(this.text);
+			this.toast.css('opacity', '1');
+		}
+		
+		this.hide = function(){
+			this.toast.css('opacity', '0');
+		}
+	}
 
 function changeBackground(event){
 	//console.log('Function changeBackground');
