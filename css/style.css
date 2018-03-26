@@ -1,4 +1,4 @@
-.block-center h2@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
 @font-face {
 	font-family: "Carlito";
@@ -194,7 +194,7 @@ body > .inner > .background {
 .toast {
 	border-radius: 120px;
 	background-color: rgba(33,33,33,0.9);
-	padding: 15px 20px;
+	padding: 15px 30px;
 	display: inline-block;
 	transform: translate(-50%, -50%);
 	bottom: 6%;
@@ -278,6 +278,7 @@ body > .inner > .background {
 body.page-preview > .inner > .background {
 	background-image: url(../img/startup-593344_1920.jpg);
 	z-index: -1;
+	box-shadow: 0px 0px 20px 0px #757575;
 }
 
 body.page-preview {
@@ -549,6 +550,10 @@ li.item.promotion {
 }
 
 /* Header */
+
+.page-help .mini-quote {
+	height: 12px;
+}
 
 .page-help .block-header {
 	position: inherit;

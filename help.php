@@ -82,23 +82,24 @@
 			
 			<section>
 				<div class="question"><h2>À quoi sert Absentia</h2><img src="img/iconquestion.svg" id="interrogation"><script src="help.js"></script>	</div>
-				<p>Il s'agit d'une plateforme créée spécialement pour le campus de l'ESPL. Elle permet à l'administration de gérer les absences des étudiants de manière plus simple et efficace. A partir d'un fichier Excel, il sera généré des "Absentia List". Sur ces dernières figureront le résumé des absences de chaque élève en fonction de la promotion choisie.</p>
+				<p>Il s'agit d'une plateforme créée spécialement pour le campus de l'ESPL. Elle permet à l'administration de gérer les absences des étudiants de manière plus simple et efficace. A partir d'un fichier Excel, il sera généré des "Absentia List <span><img class="mini-quote" src="img/iconquestion.svg"/></span>". Sur ces dernières figureront le résumé des absences de chaque élève en fonction de la promotion choisie.</p>
 			</section>
 			
 			<div class="separator"></div>
 			
 				<h2>Comment l'utiliser ?</h2>
-				<p>Sur la page d'accueil, il vous suffit de cliquer sur le bouton importer. Sélectionnez et ouvrez le fichier Excel (au <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">format CSV</a>). Choisissez les promotions pour lesquelles vous souhaitez générer des Absentia List et cliquez sur télécharger, elles seront alors automatiquement générées. </p>
+				<p>Sur la page d'accueil, il vous suffit de cliquer sur le bouton importer. Sélectionnez et ouvrez le(sà fichier(s) Excel, au <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">format CSV (séparateur points-virgules</a>). Choisissez les promotions pour lesquelles vous souhaitez générer des Absentia List et cliquez sur télécharger, elles seront alors automatiquement générées. </p>
 			
 		</div>
 		
-		<h1 class="title2">Absentia - Aide</h1>
+		<h1 class="title2">Absentia - Téléchargements</h1>
 	
 		<div class="inner2">
 			
 			<section>
-				<h2>Comment importer un fichier au format CSV ?</h2>
-				<p>Absentia à besoin de fichiers Excel au format CSV pour pouvoir fonctionner, pour savoir comment exporter un fichier au format CSV <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">c'est par ici</a>.</p>
+				<h2>Problème de téléchargement ?</h2>
+				<p>Si lorsque vous cliquez sur "Télécharger" et que rien ne se passe, il est probable que votre navigateur bloque le téléchargement.<br/>Pour résoudre ce problème <a href="https://support.google.com/chrome/answer/95472?co=GENIE.Platform%3DDesktop&hl=fr">c'est par ici</a></p>
+				<img src="img/exemple_popup_chrome.jpg" class="popup-blocker"/>
 			</section>
 		
 		</div>
