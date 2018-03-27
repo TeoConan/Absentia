@@ -8,6 +8,7 @@
 <head>
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
+	<script src="product/res/vendor/jquery.min.js"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Absentia - 404</title>
@@ -87,7 +88,9 @@
 			<p id="linkpopup">Signaler un problème</p>
 		</div>
 	</footer>
-	
+	<div class="toast">
+		<p></p>
+	</div>
 
 </body>
 

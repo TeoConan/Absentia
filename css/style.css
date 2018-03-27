@@ -280,6 +280,7 @@ p.small {
 
 
 body.page-preview > .inner > .background {
+	position: fixed;
 	background-image: url(../img/startup-593344_1920.jpg);
 	z-index: -1;
 	box-shadow: 0px 0px 20px 0px #757575;
@@ -385,7 +386,7 @@ body.page-preview .block-center .loader img {
 }
 
 .page-preview .select-all img{
-	height: 35px !important;
+	/*height: 35px !important;*/
 	width: 35px !important;
 	
 }
@@ -526,7 +527,7 @@ li.item.promotion {
 
 .page-preview .block-list .recherche img {
 	margin: auto 5px;
-	height: 40px;
+	/*height: 40px;*/
 	width: 40px;
 }
 
