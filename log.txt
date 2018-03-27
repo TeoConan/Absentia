@@ -3,3 +3,13 @@
 [MAIL] = ploui
 [MESSAGE] = "frjgfj"
 
+﻿﻿[2018-03-27 11:39:44]
+[NAME] = ddzffghgjk
+[MAIL] = ploui
+[MESSAGE] = "frjgfj"
+
+[2018-03-27 12:25:47]
+[NAME] = jghj
+[MAIL] = gj
+[MESSAGE] = "ff"
+
