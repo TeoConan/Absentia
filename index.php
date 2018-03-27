@@ -133,7 +133,9 @@
 			<p id="linkpopup">Signaler un problème</p>
 		</div>
 	</footer>
-	
+	<div class="toast">
+		<p></p>
+	</div>
 
 </body>
 

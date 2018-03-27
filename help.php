@@ -88,7 +88,7 @@
 			<div class="separator"></div>
 			
 				<h2>Comment l'utiliser ?</h2>
-				<p>Sur la page d'accueil, il vous suffit de cliquer sur le bouton importer. Sélectionnez et ouvrez le(s) à fichier(s) Excel, au <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">format CSV (séparateur points-virgules)</a>. Choisissez les promotions pour lesquelles vous souhaitez générer des Absentia List et cliquez sur télécharger, elles seront alors automatiquement générées.</p>
+				<p>Sur la page d'accueil, il vous suffit de cliquer sur le bouton importer. Sélectionnez et ouvrez le ou les fichier(s) Excel, au <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">format CSV (séparateur points-virgules)</a>. Choisissez les promotions pour lesquelles vous souhaitez générer des Absentia List et cliquez sur télécharger, elles seront alors automatiquement générées au format PDF.</p>
 			
 		</div>
 		
@@ -98,10 +98,10 @@
 			
 			<section>
 				<h2>Concernant le format du tableau</h2>
-				<p>Le format du tableau à importer doit être composé d'un header (Étudiants, Promotions, H. Injustifiées)*, et du corps du tableau avec les différents étudiants, <a href="res/Absentia tab example.csv">télécharger un fichier d'exemple</a></p>
+				<p>Le format du tableau à importer doit être composé d'une en-tête (Étudiants, Promotions, H. Injustifiées)*, et du corps du tableau avec les différents étudiants, <a href="res/Absentia tab example.csv">télécharger un fichier d'exemple</a></p>
 				<p>Si des élèves se trouvent en double dans le document, comme ci-dessous, leurs heures d'absences seront cumulées</p>
 				<img src="img/formatexcel.png" class="format-excel"/>
-				<p class="small">*Le nom des colonnes du header peuvent être changées</p>
+				<p class="small">*Le nom des colonnes peuvent être renommés</p>
 			</section>
 		
 		</div>
@@ -124,8 +124,8 @@
 			
 			<section>
 				<h2>Problème d'affichage des PDF</h2>
-				<p>Si le document PDF semble comporter des erreurs comme l'image ci-dessous, c'est que le format du tableau est mauvais.<br/>Veuillez consulter la section <strong>Format de document</strong></p>
-				<img src="img/bad_format.png" class=""/>
+				<p>Si le document PDF semble comporter des erreurs comme l'image ci-dessous, c'est qu'il s'agit du mauvais format de tableau.<br/>Veuillez consulter la section <strong>Format de document</strong>.</p>
+				<img src="img/Capture.PNG" class=""/>
 			</section>
 		
 		</div>
