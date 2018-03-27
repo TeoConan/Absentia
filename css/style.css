@@ -280,6 +280,7 @@ p.small {
 
 
 body.page-preview > .inner > .background {
+	position: fixed;
 	background-image: url(../img/startup-593344_1920.jpg);
 	z-index: -1;
 	box-shadow: 0px 0px 20px 0px #757575;
@@ -385,7 +386,7 @@ body.page-preview .block-center .loader img {
 }
 
 .page-preview .select-all img{
-	height: 35px !important;
+	/*height: 35px !important;*/
 	width: 35px !important;
 	
 }
@@ -526,7 +527,7 @@ li.item.promotion {
 
 .page-preview .block-list .recherche img {
 	margin: auto 5px;
-	height: 40px;
+	/*height: 40px;*/
 	width: 40px;
 }
 
@@ -680,6 +681,16 @@ li.item.promotion {
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+/* PAGE 404 */
+
+.page-404 .inner-button {
+	margin: 5px auto;
+	display: flex;
+}
+
+/* PAGE 404 */
+
+
 
 /* POPUP */
 
@@ -697,6 +708,7 @@ li.item.promotion {
 	margin: 60px;
 	z-index: 999;
 	position: absolute;
+	box-shadow: 0px 0px 20px #00000054;
 	top: 50%;
 	transform: translate(-60%, -50%);
 	left: 50%;

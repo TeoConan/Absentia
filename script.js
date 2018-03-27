@@ -37,6 +37,12 @@ setTimeout(function(){
 	selectAll();
 }, 2000);*/
 
+window.onbeforeunload = function() {
+	if(isgenerating){
+		return "Are you sure you want to navigate away?";
+	}
+}
+
 
 
 //Définir les EventListener des items téléchargés

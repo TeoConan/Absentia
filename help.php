@@ -1,5 +1,5 @@
 <?php 
-	include('button.php');		
+	include('product/res/includes/button.php');
 ?>
 
 
@@ -8,14 +8,14 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/style.css" />
-	<script src="jquery.min.js"></script>
+	<script src="product/res/vendor/jquery.min.js"></script>
 	<title>Absentia - Aide</title>
 	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
 </head>
 <body class="page-help">
 
 <?php
-		include('popup.php');
+		include('product/res/includes/popup.php');
 ?>
 	
 	<div class="overlay" id="viewer-overlay" style="display: none;">
@@ -28,7 +28,7 @@
 	<header class="block-header">
 		<div class="inner">
 			<div class="absentia nav-item">
-				<a href="index.php">
+				<a href="./">
 					<img src="img/absentia white.svg" alt="Absentia"/>
 				</a>
 			</div>
@@ -89,6 +89,11 @@
 			
 				<h2>Comment l'utiliser ?</h2>
 				<p>Sur la page d'accueil, il vous suffit de cliquer sur le bouton importer. Sélectionnez et ouvrez le ou les fichier(s) Excel, au <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">format CSV (séparateur points-virgules)</a>. Choisissez les promotions pour lesquelles vous souhaitez générer des Absentia List et cliquez sur télécharger, elles seront alors automatiquement générées au format PDF.</p>
+				
+				<div class="separator"></div>
+				
+				<h2>Chrome, Mozilla, Internet Explorer...</h2>
+				<p>Absentia assure son fonctionnement sur Google Chrome et Mozilla Firefox.<br/>L'affichage et ses fonctionnalités ne sont cependant pas assurées sur Internet Explorer.</p>
 			
 		</div>
 		
@@ -129,6 +134,7 @@
 			</section>
 		
 		</div>
+		
 	</main>
 	
 	<footer class="block-footer">
@@ -139,6 +145,9 @@
 			<p id="linkpopup">Signaler un problème</p>
 		</div>
 	</footer>
+	<div class="toast">
+		<p></p>
+	</div>
 
 </body>
 
