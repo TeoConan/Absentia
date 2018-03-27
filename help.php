@@ -1,5 +1,5 @@
 <?php 
-	include('button.php');		
+	include('product/res/includes/button.php');
 ?>
 
 
@@ -8,14 +8,14 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/style.css" />
-	<script src="jquery.min.js"></script>
+	<script src="product/res/vendor/jquery.min.js"></script>
 	<title>Absentia - Aide</title>
 	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
 </head>
 <body class="page-help">
 
 <?php
-		include('popup.php');
+		include('product/res/includes/popup.php');
 ?>
 	
 	<div class="overlay" id="viewer-overlay" style="display: none;">
@@ -28,7 +28,7 @@
 	<header class="block-header">
 		<div class="inner">
 			<div class="absentia nav-item">
-				<a href="index.php">
+				<a href="./">
 					<img src="img/absentia white.svg" alt="Absentia"/>
 				</a>
 			</div>

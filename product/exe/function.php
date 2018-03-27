@@ -104,7 +104,9 @@ function delOldFile($file, $del = true, $debug = false){
 	if ((time()-filectime($file)) > 604800){
 		if($del){
 			if($debug){echo('<br><strong>Del file ' . $file . '</strong>');}
-			unlink($file);
+			if (strpos($file, 'index.php') !== false) {
+				unlink($file);
+			}
 			$output = true;
 		}
 	} else {

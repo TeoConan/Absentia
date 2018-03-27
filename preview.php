@@ -1,7 +1,7 @@
 <!doctype html>
 
 <?php
-	include('button.php');
+	include('product/res/includes/button.php');
 
 
 	$error = false;
@@ -32,7 +32,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="css/style.css" />
-	<script src="jquery.min.js"></script>
+	<script src="product/res/vendor/jquery.min.js"></script>
 	<meta charset="utf-8">
 	<link rel="icon" type="image/png" href="res/icons/logo.ico" />
 	<title>Absentia - Promotions</title>
@@ -42,7 +42,7 @@
 <body class="page-preview">
 
 <?php
-		include('popup.php');
+		include('product/res/includes/popup.php');
 ?>
 	<div class="inner">
 		<div class="background"></div>
@@ -50,7 +50,7 @@
 		
 			<div class="inner">
 				<div class="absentia nav-item">
-					<a href="index.php">
+					<a href="./">
 						<img src="img/absentia white.svg" alt="Absentia"/>
 					</a>
 				</div>
@@ -173,11 +173,10 @@
 	</main>	
 	<footer class="block-footer">
 		<div class="inner">
-			<a href="#">Mentions légales</a>
+			<a href="https://www.espl.fr/mentions-legales">Mentions légales</a>
 			<a href="https://www.espl.fr">ESPL.fr</a>
 			<a href="https://planning-espl.eduservices.org/hp/">Hyperplanning</a>
 			<p id="linkpopup">Signaler un problème</p>
-			
 		</div>
 	</footer>
 	

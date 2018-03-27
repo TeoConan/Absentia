@@ -680,6 +680,16 @@ li.item.promotion {
 
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+/* PAGE 404 */
+
+.page-404 .inner-button {
+	margin: 5px auto;
+	display: flex;
+}
+
+/* PAGE 404 */
+
+
 
 /* POPUP */
 
@@ -697,6 +707,7 @@ li.item.promotion {
 	margin: 60px;
 	z-index: 999;
 	position: absolute;
+	box-shadow: 0px 0px 20px #00000054;
 	top: 50%;
 	transform: translate(-60%, -50%);
 	left: 50%;
