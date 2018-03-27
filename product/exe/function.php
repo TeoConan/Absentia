@@ -98,23 +98,24 @@ function getPromos($namefile){
 //Maintenance
 
 //Supprimer un document si vieux de 1 semaine (604 800sec)
-function delOldFile($file, $del = true){
+function delOldFile($file, $del = true, $debug = false){
 	$output = false;
 	
 	if ((time()-filectime($file)) > 604800){
 		if($del){
-			echo('<br>Del file ' . $file);
+			if($debug){echo('<br><strong>Del file ' . $file . '</strong>');}
 			unlink($file);
 			$output = true;
 		}
 	} else {
-		echo('<br>Dont del file ' . $file);
+		if($debug){echo('<br>Dont del file ' . $file . ' : time = ' . (time()-filectime($file)));}
 	}
 	
 	return($output);
 }
 
 function launchCleaning(){
+	//http://localhost/Absentia/product/exe/function.php?action=clean&from=debug
 	
 	$dirs = Array(
 		"zip",
@@ -122,18 +123,27 @@ function launchCleaning(){
 		"merge",
 		"temp"
 	);
+	$debug = false;
 
+	if(isset($_GET['from'])){
+		if($_GET['from'] == "debug"){
+			$debug = true;
+		}
+	}
+	
 	for($i = 0; $i < sizeof($dirs);$i++){
 		chmod($dirs[$i], 0777);
 		$files = scandir($dirs[$i]);
 		//array_splice($files, 1);
-		echo('<br>Dir ' . $dirs[$i] . '<br>');
-		var_dump($files);
+		if($debug){echo('<br><h1>Dir ' . getcwd() . '\\' .  $dirs[$i] . '</h1><br>');}
+		if($debug){var_dump($files);}
 
 		for($i1 = 0; $i1 < sizeof($files);$i1++){
 			delOldFile($dirs[$i] . '/' . $files[$i1]);
 		}
 	}
+	
+	
 		
 }
 
