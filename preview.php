@@ -7,9 +7,25 @@
 	$error = false;
 	$exist = false;
 
-	if (empty($_GET['file'])){$error = true;}
-	if ($_GET['file'] == ""){$error = true;}
-	if (file_exists('product/exe/temp/' . $_GET['file'])){$exist = true;}
+	if(!empty($_GET['error'])){
+		if($_GET['error'] == 1){$error = true;}
+	}
+
+	if (empty($_GET['file'])){
+		$error = true;
+	} else {
+		if ($_GET['file'] == ""){$error = true;}
+		if (file_exists('product/exe/temp/' . $_GET['file'])){
+			$exist = true;
+		} else {
+			$exist = false;
+		}
+	}
+
+	
+/*	echo('Error = ' . $error . '<br/>');
+	echo('Exist = ' . $exist . '<br/>');
+	echo('CExist = ' . ($exist == false) . '<br/>');*/
 ?>
 
 
@@ -116,7 +132,7 @@
 								if ($exist){
 									include('product/exe/scan.php');
 								} else {
-									echo('<p class="error">Une erreur est survenue</p>');
+									echo('<p class="error">Une erreur est survenue<br/>Le fichier demandé n\'est plus disponible</p>');
 									$bterror = new Button('Accueil', true);
 									$bterror->setLink('index.php');
 									echo('<div class="inner-button error">');
@@ -124,19 +140,19 @@
 									echo('</div>');
 								}
 							} else {
-								echo('<p class="error">Une erreur est survenue</p>');
-									$bterror = new Button('Accueil', true);
-									$bterror->setLink('index.php');
-									echo('<div class="inner-button error">');
-									echo($bterror->getOutput());
-									echo('</div>');
+								echo('<p class="error" style="display : block;">Une erreur est survenue dans le traitement du fichier</p>');
+								$bterror = new Button('Accueil', true);
+								$bterror->setLink('index.php');
+								echo('<div class="inner-button error">');
+								echo($bterror->getOutput());
+								echo('</div>');
 							}
 							
 							
 							?>
 						</ul>
 						
-						<p class="error">Aucun résultat.</p>
+						<p class="error search">Aucun résultat.</p>
 					</div>
 				</div>
 			</div>

@@ -70,6 +70,10 @@ body > .inner > .background {
 }
 
 
+p.small {
+	font-size: 12px;
+}
+
 /* Browser CSS */
 
 /* HEADER */
@@ -545,15 +549,14 @@ li.item.promotion {
 	max-width: 1000px;
     position: inherit;
     top: 0;
+	margin-bottom: 40px;
     right: 0;
     transform: none;
 }
 
 /* Header */
 
-.page-help .mini-quote {
-	height: 12px;
-}
+
 
 .page-help .block-header {
 	position: inherit;
@@ -564,7 +567,7 @@ li.item.promotion {
 }
 
 .page-help > .background{
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
 	height: 100%;
@@ -639,6 +642,16 @@ li.item.promotion {
 	margin: auto 5px auto auto;
 	cursor: pointer;
 	transition: all 0.75s ease-in-out;
+}
+
+/* Content */
+
+.page-help .block-center .format-excel {
+	max-width: 65%;
+}
+
+.page-help .mini-quote {
+	height: 12px;
 }
 
 /* OVERLAY */

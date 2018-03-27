@@ -177,6 +177,8 @@ class AbsentiaList
 
 			if(!empty($st1->_date || !empty($st2->_date))){
 				$date = $st1->_date . ' & ' . $st2->_date;
+			} else {
+				$date = "";
 			}
 
 			$newst = new Student($st1->_name, $st1->_class, $date, $hours, $lessons, $st1->_attachement, $st1->_motive, $letter, $sms, $st1->_justificatory);

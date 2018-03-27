@@ -4,11 +4,15 @@ if(!empty($_GET['action'])){
 	if($_GET['action'] == "clean"){
 		launchCleaning();
 	}
+	
+	if($_GET['action'] == "count"){
+		countStudents($_GET['file']);
+	}
 }
 
 
 //Contruire le HTML d'un item promotion
-function buildPromoItem($promo, $responsable){
+function buildPromoItem($promo, $responsable, $number = -1){
 	//$promo = iconv("UTF-8","ISO-8859-1//IGNORE",$promo);
 	//$responsable = iconv("UTF-8","ISO-8859-1//IGNORE",$responsable);
 	
@@ -16,7 +20,9 @@ function buildPromoItem($promo, $responsable){
 		<div class="item promotion">
 				<div class="inner">
 					<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon"/>
-					<p><span>' . $promo . '</span>
+					<p>';
+	if($number != -1){$output .= '(' . $number . ') ';}	
+	$output .=	'<span>' . $promo . '</span>
 					</p>
 				</div>
 			</div>
@@ -25,8 +31,37 @@ function buildPromoItem($promo, $responsable){
 	return($output);
 }
 
-function foundResponsable($promo){
+function countStudents($namefile){
+	$promos = array();
+	$pathfile = './product/exe/temp/' . $namefile;
 	
+	if(file_exists($pathfile)){
+		$file = fopen($pathfile, 'r');
+		$text = array();
+
+		while (!feof($file)){
+			$lines[] = html_entity_decode(utf8_encode(fgets($file)));
+		}
+
+		//echo($lines[1]);
+		$temp = array();
+		
+		for($i=0;$i<sizeof($lines);$i++){
+				$temp = (explode(';', $lines[$i])); 
+				if (!empty($temp[1])){
+					if(!isset($promos[$temp[1]])){
+						$promos[$temp[1]] = 1;
+					} else {
+						$promos[$temp[1]] += 1;
+					}				}
+		}
+
+		//print_r($promos);
+	} else {
+		echo('File not found');
+	}
+
+	return($promos);
 }
 
 //Obtenir toutes les promotions disponible dans le fichier Excel

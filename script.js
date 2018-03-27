@@ -1,6 +1,8 @@
 // JavaScript Document
 
 //Exe
+//Disable console
+//console.log = function() {}
 
 //Tous les items téléchargé
 var itempromo = document.getElementsByClassName('item-promotion');
@@ -42,7 +44,7 @@ function initPromp(event){
 	console.log('Function initPromp');
 	
 	var listitems = document.getElementsByClassName('item-promotion');
-	$('.page-preview .block-list p.error').css('display', 'none');
+	$('.page-preview .block-list p.error.search').css('display', 'none');
 	
 	//Changer le background de bleue à vert lors d'un click
 	for (var i=0; i< listitems.length; i++){
@@ -371,7 +373,7 @@ function makeList(){
 	
 	//Regex redirection
 	var regRedirect = "/<redirect>(.*?)<\/redirect>/g";
-	
+	var regError = /<b>(Notice|Warning)<(.*?)line/g;
 	
 	
 	var sendData = function() {
@@ -380,28 +382,39 @@ function makeList(){
 		data: sendtab
 		}, function(response) {
 			//var redirect = getAbsentiaPath() + '/product/exe/' + findRedirect(response);
-			var redirect = findRedirect(response);
-			
-			
 			console.log('Output :');
 			console.log(response);
-			//$('#console').text(response);
 			
-			console.log('Redirect to ' + redirect);
-			console.log('End');
+			//var error = response.match(regError);
+			var error = null;
+			if(error == null){
+				var redirect = findRedirect(response);
+
+				
+				//$('#console').text(response);
+
+				console.log('Redirect to ' + redirect);
+				console.log('End');
+
+				setTimeout(function(){
+
+					for(var i = 0;i < redirect.length;i++){
+						window.open(getAbsentiaPath() + '/product/exe/' + redirect[i], "_blank");
+					}
+
+					console.log('End redirect');
+					isgenerating = false;
+					toggleLoad($(btdl), 'TÉLÉCHARGER');
+					$('#loader').css('opacity', '0');
+					toast.hide();
+				}, 200);
+			} else {
+				console.error('Receive errors, reg = ');
+				console.log(error);
+				window.location.href = "preview.php?error=1";
+			}
 			
-			setTimeout(function(){
 				
-				for(var i = 0;i < redirect.length;i++){
-					window.open(getAbsentiaPath() + '/product/exe/' + redirect[i], "_blank");
-				}
-				
-				console.log('End redirect');
-				isgenerating = false;
-				toggleLoad($(btdl), 'TÉLÉCHARGER');
-				$('#loader').css('opacity', '0');
-				toast.hide();
-			}, 200);
 		});
 	}
 	sendData();

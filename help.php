@@ -20,7 +20,7 @@
 	
 	<div class="overlay" id="viewer-overlay" style="display: none;">
 		<div class="viewer">
-			<img src="img/Sans titre-1.jpg">
+			<img src="img/table.png">
 		</div>
 	</div>
 
@@ -88,18 +88,44 @@
 			<div class="separator"></div>
 			
 				<h2>Comment l'utiliser ?</h2>
-				<p>Sur la page d'accueil, il vous suffit de cliquer sur le bouton importer. Sélectionnez et ouvrez le(sà fichier(s) Excel, au <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">format CSV (séparateur points-virgules</a>). Choisissez les promotions pour lesquelles vous souhaitez générer des Absentia List et cliquez sur télécharger, elles seront alors automatiquement générées. </p>
+				<p>Sur la page d'accueil, il vous suffit de cliquer sur le bouton importer. Sélectionnez et ouvrez le(s) à fichier(s) Excel, au <a href="https://support.office.com/fr-fr/article/cr%C3%A9er-ou-modifier-des-fichiers-csv-%C3%A0-importer-dans-outlook-4518d70d-8fe9-46ad-94fa-1494247193c7">format CSV (séparateur points-virgules)</a>. Choisissez les promotions pour lesquelles vous souhaitez générer des Absentia List et cliquez sur télécharger, elles seront alors automatiquement générées.</p>
 			
 		</div>
 		
-		<h1 class="title2">Absentia - Téléchargements</h1>
+		<h1 class="title">Absentia - Format de document</h1>
 	
-		<div class="inner2">
+		<div class="inner">
+			
+			<section>
+				<h2>Concernant le format du tableau</h2>
+				<p>Le format du tableau à importer doit être composé d'un header (Étudiants, Promotions, H. Injustifiées)*, et du corps du tableau avec les différents étudiants, <a href="res/Absentia tab example.csv">télécharger un fichier d'exemple</a></p>
+				<p>Si des élèves se trouvent en double dans le document, comme ci-dessous, leurs heures d'absences seront cumulées</p>
+				<img src="img/formatexcel.png" class="format-excel"/>
+				<p class="small">*Le nom des colonnes du header peuvent être changées</p>
+			</section>
+		
+		</div>
+		
+		<h1 class="title">Absentia - Téléchargements</h1>
+	
+		<div class="inner">
 			
 			<section>
 				<h2>Problème de téléchargement ?</h2>
 				<p>Si lorsque vous cliquez sur "Télécharger" et que rien ne se passe, il est probable que votre navigateur bloque le téléchargement.<br/>Pour résoudre ce problème <a href="https://support.google.com/chrome/answer/95472?co=GENIE.Platform%3DDesktop&hl=fr">c'est par ici</a></p>
 				<img src="img/exemple_popup_chrome.jpg" class="popup-blocker"/>
+			</section>
+		
+		</div>
+		
+		<h1 class="title">Absentia - PDF</h1>
+	
+		<div class="inner">
+			
+			<section>
+				<h2>Problème d'affichage des PDF</h2>
+				<p>Si le document PDF semble comporter des erreurs comme l'image ci-dessous, c'est que le format du tableau est mauvais.<br/>Veuillez consulter la section <strong>Format de document</strong></p>
+				<img src="img/bad_format.png" class=""/>
 			</section>
 		
 		</div>
