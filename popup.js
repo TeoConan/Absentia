@@ -71,7 +71,6 @@ var loading = false;
 		lienpopup.addEventListener("click", toggle, false);
 		close.addEventListener("click", toggle, false);
 		button_send.addEventListener("click", sendform, false);
-		button_send.addEventListener("click", toggle, false);
 		
 				
 		/*--------------------------------------------------*/
@@ -83,7 +82,7 @@ var loading = false;
 			console.log(input_mail.value);
 			console.log(input_message.value);
 		}
-		
+	
 		
 		/*--------------------------------------------------*/
 		
@@ -100,7 +99,7 @@ var loading = false;
 				sendtab.push(input_message.value);
 				console.log('SendData');
 				sendData();
-				
+				toggle();
 				var toast = new Toast("Votre message a bien été envoyé");
 				toast.show();
 				setTimeout(function(){
