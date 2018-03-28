@@ -10,7 +10,7 @@ if ($_GET['query'] == 'getlistpromo'){
 
 	$promos = getPromos($namefile);
 	
-	$count = countStudents($namefile);
+
 	//Construire les promotions en HTML grâce au tableau $promos
 	foreach ($promos as $element){
 		$output = '<li class="item-promotion">';

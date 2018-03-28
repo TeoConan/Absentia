@@ -61,11 +61,11 @@
 				</div>
 				<div class="nav-item">
 					<div class="inner-button">
-						<?php
-						$buttonnav = new Button('IMPORTER', true);
-						$buttonnav->setID('button_choose');
-						echo($buttonnav->getOutput());
-					?>
+						<a class="button default" target="help.php" href="help.php">
+							<span>
+								BESOIN D'AIDE ?
+							</span>
+						</a>
 					</div>
 
 					<!--<form action="upload.php" method="post" enctype="multipart/form-data">-->
@@ -84,25 +84,73 @@
 
 		<main class="block-center">
 			<div class="inner">
-				<div class="inner-button">
-					<a class="button default" target="help.php" href="help.php">
-						<span>
-							BESOIN D'AIDE ?
-						</span>
-					</a>
-				</div>
+				<div class="tools">
+				
+					<div class="item-tool">
+						<div class="inner-button">
 
-				<div class="inner-button" style="margin-bottom: 0;">
+						<input type="text" value="" id="clipboardInput" style="display: none; opacity: 0; position: absolute;">
+						
+						<?php
+							if (!$error && $exist){
+								$buttonnav = new Button('Copier le lien', true);
+								$buttonnav->setLink('javascript:copyLink()');
+								echo($buttonnav->getOutput());
+							}
+						?>
 
-					<?php
-						if (!$error && $exist){
-							$buttonnav = new Button('TÉlÉCHARGER', true);
-							$buttonnav->setLink('');
-							$buttonnav->addClass('dl');
+							<script type="text/javascript">
+									function copyLink() {
+										var inputCopy = document.getElementById("clipboardInput");
+										inputCopy.style.display = 'inline-block';
+										var url = window.location.href;
+										inputCopy.value=url;
+										console.log('Copy URL');
+										inputCopy.select();
+										document.execCommand("Copy", false, inputCopy.value);
+										inputCopy.style.display = 'none';
+
+										var toast = new Toast("Le lien de la page a été copié");
+										toast.show();
+										setTimeout(function(){
+											toast.hide();
+										},2500);
+									}
+							</script>
+					</div>
+					</div>
+					
+					<div class="item-tool">
+						<div class="inner-button">
+
+						<?php
+							if (!$error && $exist){
+								$buttonnav = new Button('TÉlÉCHARGER', true);
+								$buttonnav->setLink('');
+								$buttonnav->addClass('dl');
+								echo($buttonnav->getOutput());
+							}
+						?>
+
+					</div>
+					</div>
+					
+					<div class="item-tool">
+						<div class="inner-button">
+						<?php
+							$buttonnav = new Button('IMPORTER', true);
+							$buttonnav->setID('button_choose');
 							echo($buttonnav->getOutput());
-						}
+						?>
+					</div>
+					</div>
+				
+					
 
-					?>
+					
+					
+					
+					
 				</div>
 
 				<div class="loader" id="loader">
@@ -159,11 +207,13 @@
 				
 			<div class="inner-button">
 					<?php
-						if (!$error && $exist){
-							echo($buttonnav->getOutput());
-						}
-
-					?>
+							if (!$error && $exist){
+								$buttonnav = new Button('TÉlÉCHARGER', true);
+								$buttonnav->setLink('');
+								$buttonnav->addClass('dl');
+								echo($buttonnav->getOutput());
+							}
+						?>
 				</div>
 				
 			<div>

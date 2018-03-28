@@ -313,3 +313,43 @@
 [MAIL] = frgtyhjukilompù
 [MESSAGE] = "^rgtyhjukilompù"
 
+﻿﻿[2018-03-27 11:39:44]
+[NAME] = ddzffghgjk
+[MAIL] = ploui
+[MESSAGE] = "frjgfj"
+
+﻿﻿[2018-03-27 11:39:44]
+[NAME] = ddzffghgjk
+[MAIL] = ploui
+[MESSAGE] = "frjgfj"
+
+[2018-03-27 12:25:47]
+[NAME] = jghj
+[MAIL] = gj
+[MESSAGE] = "ff"
+
+﻿﻿[2018-03-27 11:39:44]
+[NAME] = ddzffghgjk
+[MAIL] = ploui
+[MESSAGE] = "frjgfj"
+
+﻿﻿[2018-03-27 11:39:44]
+[NAME] = ddzffghgjk
+[MAIL] = ploui
+[MESSAGE] = "frjgfj"
+
+[2018-03-27 12:25:47]
+[NAME] = jghj
+[MAIL] = gj
+[MESSAGE] = "ff"
+
+[2018-03-27 14:04:46]
+[NAME] = gd
+[MAIL] = fsdg
+[MESSAGE] = "gdg"
+
+[2018-03-27 14:59:36]
+[NAME] = 656
+[MAIL] =  , , ,
+[MESSAGE] = ",k,k"
+

@@ -83,7 +83,6 @@ var loading = false;
 			console.log(input_message.value);
 		}
 	
-		
 		/*--------------------------------------------------*/
 		
 					/*ENVOI DU FORMULAIRE*/
