@@ -205,6 +205,7 @@ function testpdf(){
 }
 
 function buildAbsentiaHTML($AbsentiaList){
+
 	$outputhtml = "";
 	//$css = file_get_contents("product/exe/construct_pdf/css.html");
 	
@@ -215,29 +216,32 @@ function buildAbsentiaHTML($AbsentiaList){
 		$current = $tabstudent[$i];
 		$alert = "";
 		
-		if($current->_hours_missed >= 10 && $current->_hours_missed < 30){
-			$alert = ('Entretien RP');
-		}else 
-			if($current->_hours_missed >= 30 && $current->_hours_missed < 50){
-			$alert = ('Conseil');
-		}else 
-			if($current->_hours_missed >= 50 && $current->_hours_missed < 60){
-			$alert = ('Exclusion à 60h');
-		}else 
-			if($current->_hours_missed >= 60){
-			$alert = ('Exclusion');
-		}else{
-			$alert = ('');
+		if($current->_hours_missed >= 8){
+		
+			if($current->_hours_missed >= 10 && $current->_hours_missed < 30){
+				$alert = ('Entretien RP');
+			}else 
+				if($current->_hours_missed >= 30 && $current->_hours_missed < 50){
+				$alert = ('Conseil');
+			}else 
+				if($current->_hours_missed >= 50 && $current->_hours_missed < 60){
+				$alert = ('Exclusion à 60h');
+			}else 
+				if($current->_hours_missed >= 60){
+				$alert = ('Exclusion');
+			}else{
+				$alert = ('');
+			}
+
+
+			$dynamictable .= '
+						<tr>
+						   <td>' . $current->_name . '</td>
+							<td>' . $current->_hours_missed . '</td>
+						   <td>' . $alert . '</td>
+					   </tr>
+			';
 		}
-		
-		
-		$dynamictable .= '
-					<tr>
-					   <td>' . $current->_name . '</td>
-						<td>' . $current->_hours_missed . '</td>
-					   <td>' . $alert . '</td>
-				   </tr>
-		';
 	}
 	
 	$outputhtml = '
