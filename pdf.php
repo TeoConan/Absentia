@@ -26,7 +26,7 @@ if(!empty($_GET['action'])){
 function downloadAbsentiaPDF($absentia, $for='pdf', $dl = true){
 	
 	//Traitement du nom du fichier
-	$filename = clearName($absentia);
+	$filename = clearName($absentia) . '_' . uniqid();
 	$path = (getPDFPath() . $filename . '.pdf');
 	$html = buildAbsentiaHTML($absentia);
 	//echo($html);
@@ -129,7 +129,7 @@ function clearName($ab){
 		$name = strtolower($ab->_class);
 		
 		
-		if(strlen($name) > 21){
+		if(strlen($name) > 50){
 			$words = explode(' ', $name);
 			$date = $ab->_date;
 			$date_n = explode('/', $date);

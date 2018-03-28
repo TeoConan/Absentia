@@ -45,6 +45,8 @@ while (!feof($file)){
 	
 	//Si le tableau de lecture de line est vide, la ligne est bugée ou vide
 	if(!sizeof($read) == 0 && !empty($read[1])){
+		//Nettoyer le nom de la promo
+		$read[1] = clearPromo($read[1]);
 		//Récuperer la promotion de l'eleve (index 2)
 		if(isset($read[1]) && !empty($read[1])){$promo = $read[1];}
 		//Si la promotion de l'eleve est presente dans les promotions selectionné

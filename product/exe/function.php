@@ -13,15 +13,12 @@ if(!empty($_GET['action'])){
 
 //Contruire le HTML d'un item promotion
 function buildPromoItem($promo, $responsable, $number = -1){
-	//$promo = iconv("UTF-8","ISO-8859-1//IGNORE",$promo);
-	//$responsable = iconv("UTF-8","ISO-8859-1//IGNORE",$responsable);
 	
 	$output = '
 		<div class="item promotion">
 				<div class="inner">
 					<img src="res/icons/ic_add_circle_outline_white.svg" alt="Ajouter" class="icon"/>
 					<p>';
-	if($number != -1){$output .= '(' . $number . ') ';}	
 	$output .=	'<span>' . $promo . '</span>
 					</p>
 				</div>
@@ -83,6 +80,7 @@ function getPromos($namefile){
 		for($i=0;$i<sizeof($lines);$i++){
 				$temp = (explode(';', $lines[$i])); 
 				if (!empty($temp[1])){
+					$temp[1] = clearPromo($temp[1]);
 					$promos[] = $temp[1];
 				}
 		}
@@ -176,6 +174,55 @@ function getOnlyPromos($namefile, $promo){
 	
 	return($student);
 }
+
+//Découper le nom d'une promo pour différencier l'année et le nom
+function clearPromo($name){
+		$initName = $name;
+		$output = $initName;
+		//echo('Check name promo ' . $name . '<br/>');
+		$name = explode(',', $name);
+		$name = $name[sizeof($name)-1];
+		$yearvalidate = "°";
+		$posyear = indexFirstNumber($name);
+		$year = findFirstNumber($name);
+		
+		//echo('<p>lenght / name : ' . $name . ' size name ' . strlen($name) . '</p>');
+	
+		if(strlen($name)-1 >= $posyear+1 || strlen($name)-1 >= $posyear+2) {
+			// Pos after year										Cas d'espace 
+			if((ord($name[$posyear+1])) === (ord($yearvalidate)) || (ord($name[$posyear+2])) === (ord($yearvalidate))){
+				//echo('Année validée');
+
+				$name = substr($name, 0, $posyear-1);
+
+				$output = Array();
+				$output['name'] = trim($name);
+				$output['year'] = trim($year);
+
+				$output = trim($name);
+			} else {
+
+				//Arrangement
+				$output = $initName;
+			}
+		} else {
+			//echo('<p>Error lenght / name : ' . $name . ' size name ' . strlen($name) . '</p>');
+		}
+			
+		
+		return($output);
+	}
+	
+	function findFirstNumber($string){
+		$filteredNumbers = array_filter(preg_split("/\D+/", $string));
+		$firstOccurence = reset($filteredNumbers);
+		return($firstOccurence);
+	}
+	
+	function indexFirstNumber($text){
+		preg_match('/^\D*(?=\d)/', $text, $m);
+		return isset($m[0]) ? strlen($m[0]) : false;
+	}
 
 function auto_remove_double($array){
 	$newarray = array();
