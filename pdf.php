@@ -205,8 +205,10 @@ function testpdf(){
 }
 
 function buildAbsentiaHTML($AbsentiaList){
-
+	$msgerror = "";
+	$error = false;
 	$outputhtml = "";
+	$count = 0;
 	//$css = file_get_contents("product/exe/construct_pdf/css.html");
 	
 	$dynamictable = "";
@@ -215,7 +217,7 @@ function buildAbsentiaHTML($AbsentiaList){
 	for($i = 0; $i < sizeof($tabstudent); $i++){
 		$current = $tabstudent[$i];
 		$alert = "";
-		
+		$count++;
 		if($current->_hours_missed >= 8){
 		
 			if($current->_hours_missed >= 10 && $current->_hours_missed < 30){
@@ -233,7 +235,7 @@ function buildAbsentiaHTML($AbsentiaList){
 				$alert = ('');
 			}
 
-
+			
 			$dynamictable .= '
 						<tr>
 						   <td>' . $current->_name . '</td>
@@ -242,6 +244,18 @@ function buildAbsentiaHTML($AbsentiaList){
 					   </tr>
 			';
 		}
+		
+		//Detect errors
+		if($current->_name == "" || $current->_hours_missed== ""){
+			//$error = true;
+			$msgerror .= "<p>Error 1</p>";
+		}
+	}
+	
+	if($count < sizeof($tabstudent) || sizeof($tabstudent) == 0){$error = true;$msgerror .= "<p>Error 2</p>";}
+	
+	if($error){
+		$msgerror .= "<p>Une erreur est survenue lors de la lecture du document, les résultats peuvent être erronés.<br>Count : " . $count . "<br>Error : " . $error . "<br>Size : " . sizeof($tabstudent) . "</p>";
 	}
 	
 	$outputhtml = '
@@ -350,6 +364,7 @@ function buildAbsentiaHTML($AbsentiaList){
 				   ' . $dynamictable . '
 			   </tbody>
 			</table>
+			' . $msgerror . '
 		</div>
 	</div>
 </body>

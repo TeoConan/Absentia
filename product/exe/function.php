@@ -45,9 +45,14 @@ function getPromos($namefile){
 		
 		for($i=0;$i<sizeof($lines);$i++){
 				$temp = (explode(';', $lines[$i])); 
-				if (!empty($temp[1])){
-					$temp[1] = clearPromo($temp[1]);
-					$promos[] = $temp[1];
+				if (!empty($temp[1]) && !empty($temp[2])){
+					
+					//Check < 8h
+					if($temp[2] >= 8){
+						$temp[1] = clearPromo($temp[1]);
+						$promos[] = $temp[1];
+					}
+						
 				}
 		}
 
@@ -65,7 +70,7 @@ function getPromos($namefile){
 function delOldFile($file, $del = true, $debug = false){
 	$output = false;
 	
-	if ((time()-filectime($file)) > 1512000){
+	if ((time()-filectime($file)) > 1512000 && basename($file) != "index.php"){
 		if($del){
 			if($debug){echo('<br><strong>Del file ' . $file . '</strong>');}
 			if (strpos($file, 'index.php') !== false) {

@@ -94,6 +94,7 @@
 				
 				<h2>Chrome, Mozilla, Internet Explorer...</h2>
 				<p>Absentia assure son fonctionnement sur Google Chrome et Mozilla Firefox.<br/>L'affichage et ses fonctionnalités ne sont cependant pas assurées sur Internet Explorer.</p>
+				<p id="docformat"></p>
 			
 		</div>
 		
