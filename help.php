@@ -106,7 +106,7 @@
 				<p>Le format du tableau à importer doit être composé d'une en-tête (Étudiants, Promotions, H. Injustifiées)*, et du corps du tableau avec les différents étudiants, <a href="res/Absentia tab example.csv">télécharger un fichier d'exemple</a></p>
 				<p>Si des élèves se trouvent en double dans le document, comme ci-dessous, leurs heures d'absences seront cumulées</p>
 				<img src="img/formatexcel.png" class="format-excel"/>
-				<p class="small">*Le nom des colonnes peuvent être renommés</p>
+				<p class="small" id="linkhelpdl">*Le nom des colonnes peuvent être renommés</p>
 			</section>
 		
 		</div>

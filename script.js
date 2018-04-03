@@ -411,7 +411,8 @@ function makeList(){
 					console.log('End redirect');
 					isgenerating = false;
 					toggleLoad($(btdl), 'TÉLÉCHARGER');
-					$('#loader').css('opacity', '0');
+					$('#loader > img').css('display','none');
+					$('#linkdl').css('display', 'block');
 					toast.hide();
 				}, 200);
 			} else {

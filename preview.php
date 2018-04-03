@@ -155,6 +155,7 @@
 
 				<div class="loader" id="loader">
 					<img src="img/loader.gif"/>
+					<p id="linkdl" style="display: none">Si le téléchargement ne se lance pas, <a href="help.php#linkhelpdl">cliquez ici.</a></p>
 				</div>
 					
 				<div class="block-list">

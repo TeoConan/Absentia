@@ -334,6 +334,7 @@ body.page-preview .block-center .inner-button:first-child {
 	
 }
 
+
 body.page-preview .block-center .loader {
 	margin: 60px auto 30px;
 	opacity: 0;
@@ -342,6 +343,19 @@ body.page-preview .block-center .loader {
 
 body.page-preview .block-center .loader img {
 	height: 40px;
+}
+
+body.page-preview .block-center .loader p {
+	color: white;
+	font-family: "Carlito";
+	text-decoration: none;
+	font-size: 18px;
+}
+body.page-preview .block-center .loader a {
+	color: white;
+	font-family: "Carlito";
+	text-decoration: underline;
+	
 }
 
 .page-preview .block-center > .inner {
